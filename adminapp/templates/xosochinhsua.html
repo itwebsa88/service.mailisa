@@ -1,0 +1,541 @@
+{% load static %}
+<!DOCTYPE html>
+<!-- saved from url=(0057)https://server.thienduongtop.online/admin/yulottery/index -->
+<html lang="vi" style="height: 100%">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
+    <title>ADMIN PANEL</title>
+    <link rel="icon" href="https://server.thienduongtop.online/favicon.ico" type="image/ico" />
+    <meta name="author" content="yinqi" />
+
+    <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet" />
+    <link href="{% static 'css/style.css' %}" rel="stylesheet" />
+    <link href="//cdnjs.cloudflare.com/ajax/libs/layui/2.9.14/css/layui.css" rel="stylesheet" />
+    <style type="text/css" media="all">
+      .layui-form-label {
+        width: 100px;
+      }
+      .layui-layout {
+        margin-top: 10px;
+      }
+      .sidebar-header {
+        height: 70px;
+      }
+      .sidebar-header a {
+        font-size: 30px;
+        color: #fff;
+        line-height: 68px;
+      }
+    </style>
+    <style>
+      .layui-btn.layui-btn-sm.layui-btn-danger {
+        display: none;
+      }
+      @media (max-width: 600px) {
+        .card-body:has(.layui-form-item) {
+          display: none;
+        }
+      }
+    </style>
+    <script type="text/javascript">
+      function googleTranslateElementInit() {
+        new google.translate.TranslateElement(
+          {
+            pageLanguage: "vi",
+            includedLanguages: "en,zh-CN,vi",
+            layout: google.translate.TranslateElement.InlineLayout.SIMPLE,
+            autoDisplay: false,
+          },
+          "google_translate_element"
+        );
+      }
+    </script>
+    <script type="text/javascript" src="{% static 'js/element.js' %}"></script>
+    <link type="text/css" rel="stylesheet" charset="UTF-8" href="../static/m=el_main_css" />
+    <script type="text/javascript" charset="UTF-8" src="../static/m=el_main"></script>
+    <style type="text/css">
+      /* Chart.js */
+      @-webkit-keyframes chartjs-render-animation {
+        from {
+          opacity: 0.99;
+        }
+        to {
+          opacity: 1;
+        }
+      }
+      @keyframes chartjs-render-animation {
+        from {
+          opacity: 0.99;
+        }
+        to {
+          opacity: 1;
+        }
+      }
+      .chartjs-render-monitor {
+        -webkit-animation: chartjs-render-animation 0.001s;
+        animation: chartjs-render-animation 0.001s;
+      }
+    </style>
+  </head>
+
+  <body data-logobg="color_8" data-sidebarbg="color_8" style="position: relative; min-height: 100%; top: 0px">
+    <div class="layout-web">
+      <div class="layout-container">
+        {% include "includes/sidebar.html" %}
+        <!--End 左侧导航-->
+        <!--Header信息-->
+        {% include "includes/header.html" %}
+        <!--End Header信息-->
+
+        <!--页面主要内容-->
+        <main class="layout-content">
+          <div class="container-fluid">
+            <div class="row">
+              <div class="card">
+                <div class="card-header"><h4>Đặt trước Kết quả xổ số</h4></div>
+                <div class="card-body">
+                  <form class="layui-form" action="https://server.thienduongtop.online/admin/yulottery/index">
+                    <div class="layui-form-item">
+                      <label class="layui-form-label">Tên loại xổ số</label>
+                      <div class="layui-input-inline">
+                        <select name="key">
+                          <option value="">Vui lòng chọn</option>
+
+                          <option value="game1">Xác thực 1</option>
+
+                          <option value="5">Xác thực 2</option>
+
+                          <option value="game2">Xác thực 3</option>
+
+                          <option value="game3">Xác thực 4</option>
+                        </select>
+                        <div class="layui-unselect layui-form-select">
+                          <div class="layui-select-title"><input type="text" placeholder="Vui lòng chọn" value="" readonly="" class="layui-input layui-unselect" /><i class="layui-edge"></i></div>
+                          <dl class="layui-anim layui-anim-upbit">
+                            <dd lay-value="" class="layui-select-tips">Vui lòng chọn</dd>
+                            <dd lay-value="game1" class="">Xác thực 1</dd>
+                            <dd lay-value="5" class="">Xác thực 2</dd>
+                            <dd lay-value="game2" class="">Xác thực 3</dd>
+                            <dd lay-value="game3" class="">Xác thực 4</dd>
+                          </dl>
+                        </div>
+                      </div>
+                      <div class="layui-inline">
+                        <label class="layui-form-label"></label>
+                        <div class="layui-input-inline">
+                          <input class="layui-btn layui-btn-search" id="search" type="button" lay-submit="" lay-filter="submitSearch" value="Tìm kiếm" />
+                          <button type="reset" class="layui-btn layui-btn-primary layui-border-orange">Reset</button>
+                        </div>
+                      </div>
+                    </div>
+                  </form>
+                </div>
+              </div>
+
+              <div class="layui-card-body">
+                <script type="text/html" id="toolbar">
+                  <button type="button" class="layui-btn layui-btn-sm" lay-event="refresh"><i class="layui-icon">&#xe669;</i>Làm mới</button>
+                  <button type="button" class="layui-btn layui-btn-sm" lay-event="all_save"><i class="layui-icon">&#xe716;</i>Lưu</button>
+                </script>
+                <table id="dataTable" lay-filter="dataTable"></table>
+                <script type="text/html" id="bar">
+                  <a class="layui-btn layui-btn-xs" lay-event="edit_lottery">Sửa</a>
+                  <a class="layui-btn layui-btn-xs" lay-event="save">Lưu</a>
+                  <a class="layui-btn layui-btn-xs" lay-event="cancel">Hủy</a>
+                </script>
+              </div>
+            </div>
+          </div>
+        </main>
+      </div>
+    </div>
+
+    <!--<script type="text/javascript" src="/static/admin/index/js/jquery.min.js"></script>
+    <script type="text/javascript" src="/static/admin/index/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="/static/admin/index/js/perfect-scrollbar.min.js"></script>-->
+    <script src="{% static 'js/jquery.min.js' %}"></script>
+    <script src="{% static 'js/bootstrap.min.js' %}"></script>
+    <script src="{% static 'js/perfect-scrollbar.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/main.js' %}"></script>
+    <!--<script src="https://cdnjs.cloudflare.com/ajax/libs/layui/2.8.4/layui.min.js"></script>-->
+    <script type="text/javascript" src="{% static 'js/layui.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/Chart.js' %}"></script>
+
+    <script type="text/html" id="bar">
+      <a class="layui-btn layui-btn-xs" lay-event="edit_lottery">Sửa</a>
+      <a class="layui-btn layui-btn-xs" lay-event="save">Lưu</a>
+      <a class="layui-btn layui-btn-xs" lay-event="cancel">Hủy</a>
+    </script>
+    <!--End 页面主要内容-->
+
+    <script>
+      layui.use(["table", "element", "form", "layer", "laydate"], function () {
+        var $ = layui.$,
+          table = layui.table,
+          form = layui.form,
+          layer = layui.layer,
+          laydate = layui.laydate;
+        laydate.render({
+          elem: "#time",
+          //设置Ngày bắt đầu、日期日期的 input 选择器
+          //数组格式为 2.6.6 开始新增，之前版本直接配置 true 或任意分割字符即可
+          range: ["#startDate", "#endDate"],
+        });
+
+        function table_reload(field) {
+          layer.msg("Vui lòng chờ！", { icon: 16, shade: 0.01, time: 2000000 });
+          table.reload("dataTable", {
+            url: "/lotteryedit",
+            where: {
+              key: field.key,
+            },
+          });
+
+          layer.close(layer.index);
+        }
+
+        form.on("submit(submitSearch)", function (data) {
+          table_reload(data.field);
+        });
+        form.on("switch(state)", function (data) {
+          var state = data.elem.checked ? 1 : 0;
+          var id = data.elem.attributes["dataid"].nodeValue;
+          var index = layer.load(0, { shade: false });
+          $.ajax({
+            type: "post",
+            url: "/admin/yulottery/doeditstate",
+            data: { id: id, state: state },
+            dataType: "json",
+            success: function (data) {
+              if (data.code === 200) {
+                layer.msg(
+                  data.msg,
+                  {
+                    icon: 1,
+                    time: 1000, //2 giây đóng (nếu không cấu hình, mặc định là 3 giây)
+                  },
+                  function () {
+                    layer.closeAll();
+                    table.reload("table");
+                  }
+                );
+              } else {
+                layer.msg(
+                  data.msg,
+                  {
+                    icon: 1,
+                    time: 1000, //2 giây đóng (nếu không cấu hình, mặc định là 3 giây)
+                  },
+                  function () {
+                    layer.closeAll();
+                    table.reload("table");
+                  }
+                );
+              }
+            },
+            error: function (XMLHttpRequest, textStatus, errorThrown) {
+              layer.closeAll();
+              if (textStatus == "timeout") {
+                layer.msg(
+                  "Yêu cầu đã hết thời gian chờ！",
+                  {
+                    icon: 2,
+                    time: 1500, //2 giây đóng (nếu không cấu hình, mặc định là 3 giây)
+                  },
+                  function () {}
+                );
+              } else {
+                layer.msg(
+                  "Lỗi máy chủ！",
+                  {
+                    icon: 2,
+                    time: 1500, //2 giây đóng (nếu không cấu hình, mặc định là 3 giây)
+                  },
+                  function () {}
+                );
+              }
+            },
+          });
+        });
+        table.render({
+          elem: "#dataTable",
+          url: "/lotteryedit",
+          toolbar: "#toolbar", // 开启Header工具栏，并为其绑定左侧模板
+          defaultToolbar: ["filter", "exports", "print"],
+          title: "Danh sách cá cược",
+          cols: [
+            [
+              //{type: 'checkbox', fixed: 'left'},
+              { field: "name", title: "Tên loại xổ số" },
+              { field: "key", title: "Key", sort: true },
+              { field: "expect", title: "Kỳ số", sort: true },
+              {
+                field: "opencode",
+                title: "Kết quả",
+                templet: function (d) {
+                  var result1 = (results2 = "");
+                  var numbers = d.opencode.split(",");
+                  var seasons = {
+                    1: "Xinh Đẹp",
+                    2: "Đáng Yêu",
+                    3: "Quyến Rủ",
+                    4: "Gợi Cảm",
+                  };
+
+                  if (numbers.length > 0) {
+                    var firstNumber = numbers[0];
+                    if (seasons.hasOwnProperty(firstNumber)) {
+                      result1 = seasons[firstNumber];
+                    }
+                  }
+
+                  if (numbers.length > 1) {
+                    var secondNumber = numbers[1];
+                    if (seasons.hasOwnProperty(secondNumber)) {
+                      result2 = seasons[secondNumber];
+                    }
+                  }
+                  return '<a href="#" style="color:red" lay-event="edit_lottery">' + result1 + ", " + result2 + "</a>";
+                },
+              },
+              //{field:'opencode', title:'Kết quả',templet:function(d){return '<a href="#" style="color:red" lay-event="edit_lottery">'+d.opencode+'</a>';}},
+              { field: "player", title: "Người chỉnh sửa", sort: true },
+              {
+                field: "create_time",
+                title: "Thời gian mở thưởng",
+                sort: true,
+              },
+              { field: "update_time", title: "Thời gian lưu", sort: true },
+              {
+                fixed: "right",
+                title: "Thao tác",
+                width: 180,
+                unresize: true,
+                toolbar: "#bar",
+              },
+            ],
+          ],
+          page: true,
+        });
+
+        //头工具栏事件
+        table.on("toolbar(dataTable)", function (obj) {
+          var checkStatus = table.checkStatus(obj.config.id);
+          switch (obj.event) {
+            case "getCheckData":
+              var data = checkStatus.data;
+              layer.alert(JSON.stringify(data));
+              break;
+            case "getCheckLength":
+              var data = checkStatus.data;
+              layer.msg("Đã chọn：" + data.length + " ô");
+              break;
+            case "isAll":
+              layer.msg(checkStatus.isAll ? "Chọn tất cả" : "Không chọn tất cả");
+              break;
+            case "refresh":
+              table.reload("dataTable");
+              break;
+            case "all_save":
+              layer.confirm("Xác nhận lưu？", function (index) {
+                var data = layui.table.cache["dataTable"];
+                console.log(JSON.stringify(data));
+                $.ajax({
+                  type: "post",
+                  url: "/admin/yulottery/doallsave",
+                  data: { data: data },
+                  dataType: "json",
+                  success: function (data) {
+                    if (data.code === 200) {
+                      layer.msg(
+                        data.msg,
+                        {
+                          icon: 1,
+                          time: 1000, //2 giây đóng (nếu không cấu hình, mặc định là 3 giây)
+                        },
+                        function () {
+                          layer.close(index);
+                          table.reload("table");
+                        }
+                      );
+                    } else {
+                      layer.close(index);
+                      layer.msg(data.msg);
+                    }
+                  },
+                  error: function (XMLHttpRequest, textStatus, errorThrown) {
+                    layer.closeAll();
+                    if (textStatus == "timeout") {
+                      layer.msg(
+                        "Yêu cầu đã hết thời gian chờ！",
+                        {
+                          icon: 2,
+                          time: 1500, //2 giây đóng (nếu không cấu hình, mặc định là 3 giây)
+                        },
+                        function () {
+                          layer.close(index);
+                        }
+                      );
+                    } else {
+                      layer.msg(
+                        "Lỗi máy chủ！",
+                        {
+                          icon: 2,
+                          time: 1500, //2 giây đóng (nếu không cấu hình, mặc định là 3 giây)
+                        },
+                        function () {
+                          layer.close(index);
+                        }
+                      );
+                    }
+                  },
+                });
+              });
+              break;
+          }
+        });
+
+        //监听行工具事件
+        table.on("tool(dataTable)", function (obj) {
+          var data = obj.data;
+          if (obj.event === "save") {
+            layer.confirm("Xác nhận lưu kết quả mở thưởng？", function (index) {
+              $.ajax({
+                type: "post",
+                url: "/admin/yulottery/dosave",
+                data: data,
+                dataType: "json",
+                success: function (data) {
+                  if (data.code === 200) {
+                    layer.msg(
+                      data.msg,
+                      {
+                        icon: 1,
+                        time: 1000, //2 giây đóng (nếu không cấu hình, mặc định là 3 giây)
+                      },
+                      function () {
+                        layer.close(index);
+                        // table.reload('table');
+                        reloadView();
+                      }
+                    );
+                  } else {
+                    layer.close(index);
+                    layer.msg(data.msg);
+                  }
+                },
+                error: function (XMLHttpRequest, textStatus, errorThrown) {
+                  layer.closeAll();
+                  if (textStatus == "timeout") {
+                    layer.msg(
+                      "Yêu cầu đã hết thời gian chờ！",
+                      {
+                        icon: 2,
+                        time: 1500, //2 giây đóng (nếu không cấu hình, mặc định là 3 giây)
+                      },
+                      function () {
+                        layer.close(index);
+                      }
+                    );
+                  } else {
+                    layer.msg(
+                      "Lỗi máy chủ！",
+                      {
+                        icon: 2,
+                        time: 1500, //2 giây đóng (nếu không cấu hình, mặc định là 3 giây)
+                      },
+                      function () {
+                        layer.close(index);
+                      }
+                    );
+                  }
+                },
+              });
+            });
+          } else if (obj.event === "cancel") {
+            layer.confirm("Xác nhận Hủy kết quả sẽ mở thưởng？", function (index) {
+              if (data.player == undefined) {
+                layer.msg("Hủy không thành công, không Lưu sẽ mở thưởng");
+                return false;
+              } else {
+                $.ajax({
+                  type: "post",
+                  url: "/admin/yulottery/docancel",
+                  data: data,
+                  dataType: "json",
+                  success: function (data) {
+                    if (data.code === 200) {
+                      layer.msg(
+                        data.msg,
+                        {
+                          icon: 1,
+                          time: 1000, //2 giây đóng (nếu không cấu hình, mặc định là 3 giây)
+                        },
+                        function () {
+                          layer.close(index);
+                          // table.reload('table');
+                          reloadView();
+                        }
+                      );
+                    } else {
+                      layer.close(index);
+                      layer.msg(data.msg);
+                    }
+                  },
+                  error: function (XMLHttpRequest, textStatus, errorThrown) {
+                    layer.closeAll();
+                    if (textStatus == "timeout") {
+                      layer.msg(
+                        "Yêu cầu đã hết thời gian chờ！",
+                        {
+                          icon: 2,
+                          time: 1500, //2 giây đóng (nếu không cấu hình, mặc định là 3 giây)
+                        },
+                        function () {
+                          layer.close(index);
+                        }
+                      );
+                    } else {
+                      layer.msg(
+                        "Lỗi máy chủ！",
+                        {
+                          icon: 2,
+                          time: 1500, //2 giây đóng (nếu không cấu hình, mặc định là 3 giây)
+                        },
+                        function () {
+                          layer.close(index);
+                        }
+                      );
+                    }
+                  },
+                });
+              }
+            });
+          } else if (obj.event === "edit_lottery") {
+            console.log(data);
+            layer.open({
+              type: 2,
+              title: "Chỉnh sửa xúc xắc",
+              shadeClose: true,
+              shade: false,
+              resize: true,
+              maxmin: true, //开启最大化最小化按钮
+              area: ["900px", "600px"],
+
+              content: "/admin/yulottery/edit_lottery" + "?name=" + obj.data.name + "&key=" + obj.data.key + "&opencode=" + obj.data.opencode + "&expect=" + obj.data.expect + "&create_time=" + obj.data.create_time,
+            });
+          }
+        });
+      });
+
+      window.reloadView = function () {
+        // window.location.reload();
+        $("#search").click();
+      };
+
+      setInterval("reloadView()", 180000);
+    </script>
+  </body>
+</html>

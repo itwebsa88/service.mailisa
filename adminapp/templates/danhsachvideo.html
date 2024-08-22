@@ -1,0 +1,506 @@
+{% load static %}
+<!DOCTYPE html>
+<!-- saved from url=(0053)https://server.thienduongtop.online/admin/video/index -->
+<html lang="vi" style="height: 100%">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
+    <title>ADMIN PANEL</title>
+    <link rel="icon" href="https://server.thienduongtop.online/favicon.ico" type="image/ico" />
+    <meta name="author" content="yinqi" />
+
+    <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet" />
+    <link href="{% static 'css/style.css' %}" rel="stylesheet" />
+    <link href="//cdnjs.cloudflare.com/ajax/libs/layui/2.9.14/css/layui.css" rel="stylesheet" />
+    <style type="text/css" media="all">
+      .layui-form-label {
+        width: 100px;
+      }
+      .layui-layout {
+        margin-top: 10px;
+      }
+      .sidebar-header {
+        height: 70px;
+      }
+      .sidebar-header a {
+        font-size: 30px;
+        color: #fff;
+        line-height: 68px;
+      }
+    </style>
+    <style>
+      .layui-btn.layui-btn-sm.layui-btn-danger {
+        display: none;
+      }
+      @media (max-width: 600px) {
+        .card-body:has(.layui-form-item) {
+          display: none;
+        }
+      }
+    </style>
+    <script type="text/javascript">
+      function googleTranslateElementInit() {
+        new google.translate.TranslateElement(
+          {
+            pageLanguage: "vi",
+            includedLanguages: "en,zh-CN,vi",
+            layout: google.translate.TranslateElement.InlineLayout.SIMPLE,
+            autoDisplay: false,
+          },
+          "google_translate_element"
+        );
+      }
+    </script>
+    <script type="text/javascript" src="{% static 'js/element.js' %}"></script>
+    <link type="text/css" rel="stylesheet" charset="UTF-8" href="../static/m=el_main_css" />
+    <script type="text/javascript" charset="UTF-8" src="../static/m=el_main"></script>
+    <style type="text/css">
+      /* Chart.js */
+      @-webkit-keyframes chartjs-render-animation {
+        from {
+          opacity: 0.99;
+        }
+        to {
+          opacity: 1;
+        }
+      }
+      @keyframes chartjs-render-animation {
+        from {
+          opacity: 0.99;
+        }
+        to {
+          opacity: 1;
+        }
+      }
+      .chartjs-render-monitor {
+        -webkit-animation: chartjs-render-animation 0.001s;
+        animation: chartjs-render-animation 0.001s;
+      }
+    </style>
+  </head>
+
+  <body data-logobg="color_8" data-sidebarbg="color_8" style="position: relative; min-height: 100%; top: 0px">
+    <div class="layout-web">
+      <div class="layout-container">
+        {% include "includes/sidebar.html" %}
+        <!--End 左侧导航-->
+        <!--Header信息-->
+        {% include "includes/header.html" %}
+        <!--End Header信息-->
+
+        <!--页面主要内容-->
+        <main class="layout-content">
+          <div class="container-fluid">
+            <div class="row">
+              <div class="col-lg-12">
+                <div class="card">
+                  <div class="card-body">
+                    <form class="layui-form" action="https://server.thienduongtop.online/admin/video/index">
+                      <div class="layui-form-item">
+                        <div class="layui-inline">
+                          <label class="layui-form-label">Tên video</label>
+                          <div class="layui-input-inline">
+                            <input type="text" name="vod_name" placeholder="Nhập từ khóa tìm kiếm" autocomplete="off" class="layui-input" />
+                          </div>
+                          <div class="layui-inline">
+                            <div class="layui-inline" id="time" lay-key="1" layui-laydate-id="time">
+                              <label class="layui-form-label">Ngày bắt đầu</label>
+                              <div class="layui-input-inline">
+                                <input name="start_time" type="text" autocomplete="off" id="startDate" class="layui-input" placeholder="Ngày bắt đầu" />
+                              </div>
+                              <label class="layui-form-label">Ngày kết thúc</label>
+                              <div class="layui-input-inline">
+                                <input name="end_time" type="text" autocomplete="off" id="endDate" class="layui-input" placeholder="Ngày kết thúc" />
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div class="layui-form-item">
+                        <div class="layui-inline">
+                          <label class="layui-form-label"></label>
+                          <div class="layui-input-inline">
+                            <input class="layui-btn layui-btn-search" type="button" lay-submit="" lay-filter="submitSearch" value="Tìm kiếm" />
+                            <button type="reset" class="layui-btn layui-btn-primary layui-border-orange">Reset</button>
+                          </div>
+                        </div>
+                      </div>
+                    </form>
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-lg-12">
+                <div class="card">
+                  <div class="card-body">
+                    <table style="height: 125px" width="640" cellspacing="0" cellpadding="2" class="layui-hide" id="table" lay-filter="table"></table>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </main>
+      </div>
+    </div>
+
+    <!--<script type="text/javascript" src="/static/admin/index/js/jquery.min.js"></script>
+    <script type="text/javascript" src="/static/admin/index/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="/static/admin/index/js/perfect-scrollbar.min.js"></script>-->
+    <script src="{% static 'js/jquery.min.js' %}"></script>
+    <script src="{% static 'js/bootstrap.min.js' %}"></script>
+    <script src="{% static 'js/perfect-scrollbar.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/main.js' %}"></script>
+    <!--<script src="https://cdnjs.cloudflare.com/ajax/libs/layui/2.8.4/layui.min.js"></script>-->
+    <script type="text/javascript" src="{% static 'js/layui.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/Chart.js' %}"></script>
+
+    <script type="text/html" id="toolbar">
+      <div class="layui-btn-container">
+        <!--<button class="layui-btn layui-btn-sm" lay-event="getCheckData">Lấy dữ liệu hàng đã chọn</button>
+        <button class="layui-btn layui-btn-sm" lay-event="getCheckLength">Lấy số lượng hàng đã chọn</button>
+        <button class="layui-btn layui-btn-sm" lay-event="isAll">Xác nhận tất cả đã chọn</button>-->
+        <button type="button" class="layui-btn layui-btn-sm" lay-event="add"><i class="layui-icon">&#xe654;</i>Thêm</button>
+        <button type="button" class="layui-btn layui-btn-sm layui-btn-danger"><i class="layui-icon">&#xe640;</i>Xóa</button>
+      </div>
+    </script>
+
+    <script type="text/html" id="bar">
+      <a class="layui-btn layui-btn-xs" lay-event="edit">Sửa</a>
+      <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">Xóa</a>
+    </script>
+
+    <script>
+      layui.use(["table", "element", "form", "layer", "laydate"], function () {
+        var $ = layui.$,
+          table = layui.table,
+          form = layui.form,
+          layer = layui.layer,
+          laydate = layui.laydate;
+        laydate.render({
+          elem: "#time",
+          //设置Ngày bắt đầu、日期日期的 input 选择器
+          //数组格式为 2.6.6 开始新增，之前版本直接配置 true 或任意分割字符即可
+          range: ["#startDate", "#endDate"],
+        });
+        function table_reload(field) {
+          layer.msg("Vui lòng chờ！", { icon: 16, shade: 0.01, time: 2000000 });
+          table.reload("table", {
+            url: "video",
+            where: {
+              vod_name: field.vod_name,
+              vod_status: field.status,
+              start_time: field.start_time,
+              end_time: field.end_time,
+            },
+          });
+
+          layer.close(layer.index);
+        }
+        form.on("submit(submitSearch)", function (data) {
+          table_reload(data.field);
+        });
+        form.on("switch(state)", function (data) {
+          var state = data.elem.checked ? 1 : 0;
+          var id = data.elem.attributes["dataid"].nodeValue;
+          var index = layer.load(0, { shade: false });
+          $.ajax({
+            type: "post",
+            url: "/admin/video/doeditstate",
+            data: { id: id, state: state },
+            dataType: "json",
+            success: function (data) {
+              if (data.code === 200) {
+                layer.msg(
+                  data.msg,
+                  {
+                    icon: 1,
+                    time: 1000, //2 giây đóng (nếu không cấu hình, mặc định là 3 giây)
+                  },
+                  function () {
+                    layer.closeAll();
+                    table.reload("table");
+                  }
+                );
+              } else {
+                layer.msg(
+                  data.msg,
+                  {
+                    icon: 1,
+                    time: 1000, //2 giây đóng (nếu không cấu hình, mặc định là 3 giây)
+                  },
+                  function () {
+                    layer.closeAll();
+                    table.reload("table");
+                  }
+                );
+              }
+            },
+            error: function (XMLHttpRequest, textStatus, errorThrown) {
+              layer.closeAll();
+              if (textStatus == "timeout") {
+                layer.msg(
+                  "Yêu cầu đã hết thời gian chờ！",
+                  {
+                    icon: 2,
+                    time: 1500, //2 giây đóng (nếu không cấu hình, mặc định là 3 giây)
+                  },
+                  function () {}
+                );
+              } else {
+                layer.msg(
+                  "Lỗi máy chủ！",
+                  {
+                    icon: 2,
+                    time: 1500, //2 giây đóng (nếu không cấu hình, mặc định là 3 giây)
+                  },
+                  function () {}
+                );
+              }
+            },
+          });
+        });
+        table.render({
+          elem: "#table",
+          url: "video",
+          toolbar: "#toolbar", // 开启Header工具栏，并为其绑定左侧模板
+          defaultToolbar: ["filter", "exports", "print"],
+          title: "Danh sách quản trị viên",
+          cols: [
+            [
+              //{type: 'checkbox', fixed: 'left'},
+              { field: "id", title: "ID", width: 70 },
+              { field: "vod_name", title: "Tên video" },
+              { field: "vod_duration", title: "Thời lượng video" },
+              { field: "vod_score_num", title: "Số lượt xem" },
+              {
+                field: "vod_pic",
+                title: "Hình ảnh bìa",
+                templet: function (d) {
+                  return '<a class="layui-btn layui-btn-xs" lay-event="open_img">Xem</a>';
+                },
+              },
+              {
+                title: "Trạng thái",
+                templet: function (d) {
+                  let checked = "";
+                  if (d.vod_status == 1) {
+                    checked = "checked";
+                  } else {
+                    checked = " ";
+                  }
+                  return '<input type="checkbox" ' + checked + ' name="status" dataid = "' + d.id + '" lay-skin="switch" lay-filter="status" lay-text="Mở | Đóng">';
+                },
+              },
+              {
+                title: "Nổi bật",
+                templet: function (d) {
+                  let checked = "";
+                  if (d.vod_hot == 1) {
+                    checked = "checked";
+                  } else {
+                    checked = " ";
+                  }
+                  return '<input type="checkbox" ' + checked + ' name="status" dataid = "' + d.id + '" lay-skin="switch" lay-filter="hot" lay-text="Mở | Đóng">';
+                },
+              },
+              {
+                field: "vod_play_url",
+                title: "Liên kết video",
+                templet: function (d) {
+                  return '<a class="layui-btn layui-btn-xs" lay-event="open_video">Xem</a>';
+                },
+              },
+              { field: "vod_class_name", title: "Danh Mục Video" },
+              { field: "create_time", title: "Thòi gian tạo" },
+              {
+                fixed: "right",
+                title: "Thao tác",
+                fixed: "right",
+                unresize: true,
+                toolbar: "#bar",
+              },
+            ],
+          ],
+          page: true,
+        });
+
+        //头工具栏事件
+        table.on("toolbar(table)", function (obj) {
+          var checkStatus = table.checkStatus(obj.config.id);
+          switch (obj.event) {
+            case "getCheckData":
+              var data = checkStatus.data;
+              layer.alert(JSON.stringify(data));
+              break;
+            case "getCheckLength":
+              var data = checkStatus.data;
+              layer.msg("Đã chọn：" + data.length + " ô");
+              break;
+            case "isAll":
+              layer.msg(checkStatus.isAll ? "Chọn tất cả" : "Không chọn tất cả");
+              break;
+            case "add":
+              layer.open({
+                type: 2,
+                title: "Thêm video",
+                shadeClose: true,
+                shade: false,
+                resize: true,
+                maxmin: true, //开启最大化最小化按钮
+                area: ["893px", "600px"],
+                content: "/admin/video/operation" + "?operation=add",
+              });
+              break;
+          }
+        });
+        form.on("switch(hot)", function (data) {
+          var status = data.elem.checked ? 1 : 0;
+          var id = data.elem.attributes["dataid"].nodeValue;
+          var index = layer.load(0, { shade: false });
+          $.ajax({
+            type: "post",
+            url: "/admin/video/doedithot",
+            data: { id: id, status: status },
+            dataType: "json",
+            success: function (data) {
+              if (data.code === 200) {
+                layer.msg(
+                  data.msg,
+                  {
+                    icon: 1,
+                    time: 1000, //2 giây đóng (nếu không cấu hình, mặc định là 3 giây)
+                  },
+                  function () {
+                    layer.closeAll();
+                    table.reload("table");
+                  }
+                );
+              } else {
+                layer.msg(
+                  data.msg,
+                  {
+                    icon: 2,
+                    time: 1000, //2 giây đóng (nếu không cấu hình, mặc định là 3 giây)
+                  },
+                  function () {
+                    layer.closeAll();
+                    table.reload("table");
+                  }
+                );
+              }
+            },
+            error: function (XMLHttpRequest, textStatus, errorThrown) {
+              layer.closeAll();
+              if (textStatus == "timeout") {
+                layer.msg(
+                  "Yêu cầu đã hết thời gian chờ！",
+                  {
+                    icon: 2,
+                    time: 1500, //2 giây đóng (nếu không cấu hình, mặc định là 3 giây)
+                  },
+                  function () {}
+                );
+              } else {
+                layer.msg(
+                  "Lỗi máy chủ！",
+                  {
+                    icon: 2,
+                    time: 1500, //2 giây đóng (nếu không cấu hình, mặc định là 3 giây)
+                  },
+                  function () {}
+                );
+              }
+            },
+          });
+        });
+        //监听行工具事件
+        table.on("tool(table)", function (obj) {
+          var data = obj.data;
+          if (obj.event === "del") {
+            layer.confirm("Xác nhận xóa dữ liệu？", function (index) {
+              $.ajax({
+                type: "post",
+                url: "/admin/video/dodel",
+                data: { id: data.id },
+                dataType: "json",
+                success: function (data) {
+                  if (data.code === 200) {
+                    layer.msg(
+                      data.msg,
+                      {
+                        icon: 1,
+                        time: 1000, //2 giây đóng (nếu không cấu hình, mặc định là 3 giây)
+                      },
+                      function () {
+                        obj.del();
+                        layer.close(index);
+                        table.reload("table");
+                      }
+                    );
+                  } else {
+                    layer.msg(data.msg);
+                  }
+                },
+                error: function (XMLHttpRequest, textStatus, errorThrown) {
+                  layer.closeAll();
+                  if (textStatus == "timeout") {
+                    layer.msg(
+                      "Yêu cầu đã hết thời gian chờ！",
+                      {
+                        icon: 2,
+                        time: 1500, //2 giây đóng (nếu không cấu hình, mặc định là 3 giây)
+                      },
+                      function () {}
+                    );
+                  } else {
+                    layer.msg(
+                      "Lỗi máy chủ！",
+                      {
+                        icon: 2,
+                        time: 1500, //2 giây đóng (nếu không cấu hình, mặc định là 3 giây)
+                      },
+                      function () {}
+                    );
+                  }
+                },
+              });
+            });
+          } else if (obj.event === "edit") {
+            layer.open({
+              type: 2,
+              title: "Sửa",
+              shadeClose: true,
+              shade: false,
+              resize: true,
+              maxmin: true, //开启最大化最小化按钮
+              area: ["900px", "600px"],
+              content: "/admin/video/operation" + "?operation=edit&id=" + obj.data.id,
+            });
+          } else if (obj.event === "open_video") {
+            layer.open({
+              type: 2,
+              title: false,
+              closeBtn: 0,
+              area: ["900px", "600px"],
+              skin: "layui-layer-nobg", //没有背景色
+              shadeClose: true,
+              content: "/admin/video/play?url=" + obj.data.vod_play_url,
+            });
+          } else if (obj.event === "open_img") {
+            layer.open({
+              type: 1,
+              title: false,
+              closeBtn: 0,
+              area: ["auto"],
+              skin: "layui-layer-nobg", //没有背景色
+              shadeClose: true,
+              content: "<img style='width:500px;height:300px' src='" + obj.data.vod_pic + "'>",
+            });
+          }
+        });
+      });
+    </script>
+  </body>
+</html>

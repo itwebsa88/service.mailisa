@@ -1,0 +1,16 @@
+{
+  "code": 0,
+  "msg": "",
+  "data": [
+    {
+      "id": 4,
+      "name": "Th\u00f4ng b\u00e1o 1",
+      "status": 1,
+      "text": "CLB THIEN DUONG TOP T\u00ecnh 1 \u0110\u00eam K\u00ednh Ch\u00e0o Q\u00fay Kh\u00e1ch H\u00e0ng,R\u1ea5t H\u00e2n H\u1ea1nh \u0110\u01b0\u1ee3c Ch\u00e0o \u0110\u00f3n Kh\u00e1ch Tham Gia CLB THIEN DUONG TOP , Ch\u00fac Qu\u00fd Kh\u00e1ch Tr\u1ea3i Nghi\u1ec7m Vui V\u1ebb ,Xin C\u1ea3m \u01a0n \uff01",
+      "hot": 1,
+      "create_time": "2021-09-28 12:59:55",
+      "update_time": 1721707382
+    }
+  ],
+  "count": 1
+}

@@ -1,0 +1,6 @@
+[
+  { "id": 10, "name": "X\u00e1c th\u1ef1c 1", "status": 1, "rule": "3", "cid": "M\u00e0u th\u1eddi gian", "condition": "0.00", "hot": 1, "key": "game1", "desc": "X\u00e1c th\u1ef1c 1", "ico": "https://server.thienduongtops.com/lottery/20240428/76622a4d6d9d6fb835eb6375623cc98a.jpg", "create_time": "2021-10-17 17:20", "update_time": 1721283155 },
+  { "id": 11, "name": "X\u00e1c th\u1ef1c 2", "status": 1, "rule": "3", "cid": "Nhanh", "condition": "0.00", "hot": 1, "key": "5", "desc": "X\u00e1c th\u1ef1c 2", "ico": "https://server.thienduongtops.com/lottery/20240428/7c13d9529641f3de0c260e4a0cced9db.jpg", "create_time": "2021-10-17 17:20", "update_time": 1721283168 },
+  { "id": 12, "name": "X\u00e1c th\u1ef1c 3", "status": 1, "rule": "3", "cid": "M\u00e0u may m\u1eafn", "condition": "0.00", "hot": 1, "key": "game2", "desc": "X\u00e1c th\u1ef1c 3", "ico": "https://server.thienduongtops.com/lottery/20240428/b170f3d01c1d5d34993d42cae9f7e139.jpg", "create_time": "2021-10-17 17:21", "update_time": 1721283205 },
+  { "id": 13, "name": "X\u00e1c th\u1ef1c 4", "status": 1, "rule": "3", "cid": "Nhanh", "condition": "0.00", "hot": 1, "key": "game3", "desc": "X\u00e1c th\u1ef1c 4", "ico": "https://server.thienduongtops.com/lottery/20240428/bad7cca07105664fd5810910aead1adb.jpg", "create_time": "2021-10-17 17:22", "update_time": 1721283217 }
+]

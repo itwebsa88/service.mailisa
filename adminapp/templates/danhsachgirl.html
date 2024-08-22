@@ -1,0 +1,522 @@
+{% load static %}
+<!DOCTYPE html>
+<!-- saved from url=(0065)https://server.thienduongtop.online/admin/xuanfeilist/xuanfeilist -->
+<html lang="vi" style="height: 100%">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
+    <title>ADMIN PANEL</title>
+    <link rel="icon" href="https://server.thienduongtop.online/favicon.ico" type="image/ico" />
+    <meta name="author" content="yinqi" />
+
+    <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet" />
+    <link href="{% static 'css/style.css' %}" rel="stylesheet" />
+    <link href="//cdnjs.cloudflare.com/ajax/libs/layui/2.9.14/css/layui.css" rel="stylesheet" />
+    <style type="text/css" media="all">
+      .layui-form-label {
+        width: 100px;
+      }
+      .layui-layout {
+        margin-top: 10px;
+      }
+      .sidebar-header {
+        height: 70px;
+      }
+      .sidebar-header a {
+        font-size: 30px;
+        color: #fff;
+        line-height: 68px;
+      }
+    </style>
+    <style>
+      .layui-btn.layui-btn-sm.layui-btn-danger {
+        display: none;
+      }
+      @media (max-width: 600px) {
+        .card-body:has(.layui-form-item) {
+          display: none;
+        }
+      }
+    </style>
+    <script type="text/javascript">
+      function googleTranslateElementInit() {
+        new google.translate.TranslateElement(
+          {
+            pageLanguage: "vi",
+            includedLanguages: "en,zh-CN,vi",
+            layout: google.translate.TranslateElement.InlineLayout.SIMPLE,
+            autoDisplay: false,
+          },
+          "google_translate_element"
+        );
+      }
+    </script>
+    <script type="text/javascript" src="{% static 'js/element.js' %}"></script>
+    <link type="text/css" rel="stylesheet" charset="UTF-8" href="../static/m=el_main_css" />
+    <script type="text/javascript" charset="UTF-8" src="../static/m=el_main"></script>
+    <style type="text/css">
+      /* Chart.js */
+      @-webkit-keyframes chartjs-render-animation {
+        from {
+          opacity: 0.99;
+        }
+        to {
+          opacity: 1;
+        }
+      }
+      @keyframes chartjs-render-animation {
+        from {
+          opacity: 0.99;
+        }
+        to {
+          opacity: 1;
+        }
+      }
+      .chartjs-render-monitor {
+        -webkit-animation: chartjs-render-animation 0.001s;
+        animation: chartjs-render-animation 0.001s;
+      }
+    </style>
+  </head>
+
+  <body data-logobg="color_8" data-sidebarbg="color_8" style="position: relative; min-height: 100%; top: 0px">
+    <div class="layout-web">
+      <div class="layout-container">
+        {% include "includes/sidebar.html" %}
+        <!--End 左侧导航-->
+        <!--Header信息-->
+        {% include "includes/header.html" %}
+        <!--End Header信息-->
+
+        <!--页面主要内容-->
+        <main class="layout-content">
+          <div class="container-fluid">
+            <div class="row">
+              <div class="col-lg-12">
+                <div class="card">
+                  <div class="card-body">
+                    <form class="layui-form" action="https://server.thienduongtop.online/admin/xuanfeilist/xuanfeilist">
+                      <div class="layui-form-item">
+                        <div class="layui-inline">
+                          <label class="layui-form-label">Tên</label>
+                          <div class="layui-input-inline">
+                            <input type="text" name="vod_name" placeholder="Nhập từ khóa tìm kiếm" autocomplete="off" class="layui-input" />
+                          </div>
+                          <div class="layui-inline">
+                            <div class="layui-inline" id="time" lay-key="1" layui-laydate-id="time">
+                              <label class="layui-form-label">Ngày bắt đầu</label>
+                              <div class="layui-input-inline">
+                                <input name="start_time" type="text" autocomplete="off" id="startDate" class="layui-input" placeholder="Ngày bắt đầu" />
+                              </div>
+                              <label class="layui-form-label">Ngày kết thúc</label>
+                              <div class="layui-input-inline">
+                                <input name="end_time" type="text" autocomplete="off" id="endDate" class="layui-input" placeholder="Ngày kết thúc" />
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div class="layui-form-item">
+                        <div class="layui-inline">
+                          <label class="layui-form-label"></label>
+                          <div class="layui-input-inline">
+                            <input class="layui-btn layui-btn-search" type="button" lay-submit="" lay-filter="submitSearch" value="Tìm kiếm" />
+                            <button type="reset" class="layui-btn layui-btn-primary layui-border-orange">Reset</button>
+                          </div>
+                        </div>
+                      </div>
+                    </form>
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-lg-12">
+                <div class="card">
+                  <div class="card-body">
+                    <table style="height: 125px" border="1" width="640" cellspacing="0" cellpadding="2" class="layui-hide" id="table" lay-filter="table"></table>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </main>
+      </div>
+    </div>
+
+    <!--<script type="text/javascript" src="/static/admin/index/js/jquery.min.js"></script>
+    <script type="text/javascript" src="/static/admin/index/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="/static/admin/index/js/perfect-scrollbar.min.js"></script>-->
+    <script src="{% static 'js/jquery.min.js' %}"></script>
+    <script src="{% static 'js/bootstrap.min.js' %}"></script>
+    <script src="{% static 'js/perfect-scrollbar.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/main.js' %}"></script>
+    <!--<script src="https://cdnjs.cloudflare.com/ajax/libs/layui/2.8.4/layui.min.js"></script>-->
+    <script type="text/javascript" src="{% static 'js/layui.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/Chart.js' %}"></script>
+
+    <script type="text/html" id="toolbar">
+      <div class="layui-btn-container">
+        <!--<button class="layui-btn layui-btn-sm" lay-event="getCheckData">Lấy dữ liệu hàng đã chọn</button>
+        <button class="layui-btn layui-btn-sm" lay-event="getCheckLength">Lấy số lượng hàng đã chọn</button>
+        <button class="layui-btn layui-btn-sm" lay-event="isAll">Xác nhận tất cả đã chọn</button>-->
+        <button type="button" class="layui-btn layui-btn-sm" lay-event="add"><i class="layui-icon">&#xe654;</i>Thêm</button>
+        <button type="button" class="layui-btn layui-btn-sm layui-btn-danger"><i class="layui-icon">&#xe640;</i>Xóa</button>
+      </div>
+    </script>
+
+    <script type="text/html" id="bar">
+      <a class="layui-btn layui-btn-xs" lay-event="edit">Sửa</a>
+      <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">Xóa</a>
+    </script>
+
+    <div id="goog-gt-tt" class="VIpgJd-yAWNEb-L7lbkb skiptranslate" style="border-radius: 12px; margin: 0 0 0 -23px; padding: 0; font-family: 'Google Sans', Arial, sans-serif" data-id="">
+      <div id="goog-gt-vt" class="VIpgJd-yAWNEb-hvhgNd">
+        <div class="VIpgJd-yAWNEb-hvhgNd-l4eHX-i3jM8c">
+          <img src="../static/24px.svg" width="24" height="24" alt="" />
+        </div>
+        <div class="VIpgJd-yAWNEb-hvhgNd-k77Iif-i3jM8c">
+          <div class="VIpgJd-yAWNEb-hvhgNd-IuizWc" dir="ltr">Văn bản gốc</div>
+          <div id="goog-gt-original-text" class="VIpgJd-yAWNEb-nVMfcd-fmcmS VIpgJd-yAWNEb-hvhgNd-axAV1"></div>
+        </div>
+        <div class="VIpgJd-yAWNEb-hvhgNd-N7Eqid ltr">
+          <div class="VIpgJd-yAWNEb-hvhgNd-N7Eqid-B7I4Od ltr" dir="ltr">
+            <div class="VIpgJd-yAWNEb-hvhgNd-UTujCb">Đánh giá bản dịch này</div>
+            <div class="VIpgJd-yAWNEb-hvhgNd-eO9mKe">Ý kiến phản hồi của bạn sẽ được dùng để góp phần cải thiện Google Dịch</div>
+          </div>
+          <div class="VIpgJd-yAWNEb-hvhgNd-xgov5 ltr">
+            <button id="goog-gt-thumbUpButton" type="button" class="VIpgJd-yAWNEb-hvhgNd-bgm6sf" title="Bản dịch tốt" aria-label="Bản dịch tốt" aria-pressed="false">
+              <span id="goog-gt-thumbUpIcon"
+                ><svg width="24" height="24" viewBox="0 0 24 24" focusable="false" class="VIpgJd-yAWNEb-hvhgNd-THI6Vb NMm5M">
+                  <path d="M21 7h-6.31l.95-4.57.03-.32c0-.41-.17-.79-.44-1.06L14.17 0S7.08 6.85 7 7H2v13h16c.83 0 1.54-.5 1.84-1.22l3.02-7.05c.09-.23.14-.47.14-.73V9c0-1.1-.9-2-2-2zM7 18H4V9h3v9zm14-7l-3 7H9V8l4.34-4.34L12 9h9v2z"></path></svg></span
+              ><span id="goog-gt-thumbUpIconFilled"
+                ><svg width="24" height="24" viewBox="0 0 24 24" focusable="false" class="VIpgJd-yAWNEb-hvhgNd-THI6Vb NMm5M">
+                  <path d="M21 7h-6.31l.95-4.57.03-.32c0-.41-.17-.79-.44-1.06L14.17 0S7.08 6.85 7 7v13h11c.83 0 1.54-.5 1.84-1.22l3.02-7.05c.09-.23.14-.47.14-.73V9c0-1.1-.9-2-2-2zM5 7H1v13h4V7z"></path></svg
+              ></span></button
+            ><button id="goog-gt-thumbDownButton" type="button" class="VIpgJd-yAWNEb-hvhgNd-bgm6sf" title="Bản dịch kém" aria-label="Bản dịch kém" aria-pressed="false">
+              <span id="goog-gt-thumbDownIcon"
+                ><svg width="24" height="24" viewBox="0 0 24 24" focusable="false" class="VIpgJd-yAWNEb-hvhgNd-THI6Vb NMm5M">
+                  <path d="M3 17h6.31l-.95 4.57-.03.32c0 .41.17.79.44 1.06L9.83 24s7.09-6.85 7.17-7h5V4H6c-.83 0-1.54.5-1.84 1.22l-3.02 7.05c-.09.23-.14.47-.14.73v2c0 1.1.9 2 2 2zM17 6h3v9h-3V6zM3 13l3-7h9v10l-4.34 4.34L12 15H3v-2z"></path></svg></span
+              ><span id="goog-gt-thumbDownIconFilled"
+                ><svg width="24" height="24" viewBox="0 0 24 24" focusable="false" class="VIpgJd-yAWNEb-hvhgNd-THI6Vb NMm5M">
+                  <path d="M3 17h6.31l-.95 4.57-.03.32c0 .41.17.79.44 1.06L9.83 24s7.09-6.85 7.17-7V4H6c-.83 0-1.54.5-1.84 1.22l-3.02 7.05c-.09.23-.14.47-.14.73v2c0 1.1.9 2 2 2zm16 0h4V4h-4v13z"></path></svg
+              ></span>
+            </button>
+          </div>
+        </div>
+        <div id="goog-gt-votingHiddenPane" class="VIpgJd-yAWNEb-hvhgNd-aXYTce">
+          <form id="goog-gt-votingForm" action="https://translate.googleapis.com/translate_voting?client=te" method="post" target="votingFrame" class="VIpgJd-yAWNEb-hvhgNd-aXYTce">
+            <input type="text" name="sl" id="goog-gt-votingInputSrcLang" /><input type="text" name="tl" id="goog-gt-votingInputTrgLang" /><input type="text" name="query" id="goog-gt-votingInputSrcText" /><input type="text" name="gtrans" id="goog-gt-votingInputTrgText" /><input type="text" name="vote" id="goog-gt-votingInputVote" />
+          </form>
+          <iframe name="votingFrame" frameborder="0" src="../static/saved_resource.html"></iframe>
+        </div>
+      </div>
+    </div>
+    <script>
+      layui.use(["table", "element", "form", "layer", "laydate"], function () {
+        var $ = layui.$,
+          table = layui.table,
+          form = layui.form,
+          layer = layui.layer,
+          laydate = layui.laydate;
+        laydate.render({
+          elem: "#time",
+          //设置Ngày bắt đầu、日期日期的 input 选择器
+          //数组格式为 2.6.6 开始新增，之前版本直接配置 true 或任意分割字符即可
+          range: ["#startDate", "#endDate"],
+        });
+        function table_reload(field) {
+          layer.msg("Vui lòng chờ！", { icon: 16, shade: 0.01, time: 2000000 });
+          table.reload("table", {
+            url: "=/girl",
+            where: {
+              name: field.vod_name,
+              start_time: field.start_time,
+              end_time: field.end_time,
+            },
+          });
+
+          layer.close(layer.index);
+        }
+        form.on("submit(submitSearch)", function (data) {
+          table_reload(data.field);
+        });
+        form.on("switch(state)", function (data) {
+          var state = data.elem.checked ? 1 : 0;
+          var id = data.elem.attributes["dataid"].nodeValue;
+          var index = layer.load(0, { shade: false });
+          $.ajax({
+            type: "post",
+            url: "/admin/xuanfeilist/doeditstate",
+            data: { id: id, state: state },
+            dataType: "json",
+            success: function (data) {
+              if (data.code === 200) {
+                layer.msg(
+                  data.msg,
+                  {
+                    icon: 1,
+                    time: 1000, //2 giây đóng (nếu không cấu hình, mặc định là 3 giây)
+                  },
+                  function () {
+                    layer.closeAll();
+                    table.reload("table");
+                  }
+                );
+              } else {
+                layer.msg(
+                  data.msg,
+                  {
+                    icon: 1,
+                    time: 1000, //2 giây đóng (nếu không cấu hình, mặc định là 3 giây)
+                  },
+                  function () {
+                    layer.closeAll();
+                    table.reload("table");
+                  }
+                );
+              }
+            },
+            error: function (XMLHttpRequest, textStatus, errorThrown) {
+              layer.closeAll();
+              if (textStatus == "timeout") {
+                layer.msg(
+                  "Yêu cầu đã hết thời gian chờ！",
+                  {
+                    icon: 2,
+                    time: 1500, //2 giây đóng (nếu không cấu hình, mặc định là 3 giây)
+                  },
+                  function () {}
+                );
+              } else {
+                layer.msg(
+                  "Lỗi máy chủ！",
+                  {
+                    icon: 2,
+                    time: 1500, //2 giây đóng (nếu không cấu hình, mặc định là 3 giây)
+                  },
+                  function () {}
+                );
+              }
+            },
+          });
+        });
+        table.render({
+          elem: "#table",
+          url: "/girl",
+          toolbar: "#toolbar", // 开启Header工具栏，并为其绑定左侧模板
+          defaultToolbar: ["filter", "exports", "print"],
+          title: "Danh Sách Video",
+          cols: [
+            [
+              //{type: 'checkbox', fixed: 'left'},
+              { field: "id", title: "ID", width: 70 },
+              { field: "xuanfei_name", title: "Tên" },
+              {
+                field: "vod_pic",
+                title: "Ảnh bìa",
+                templet: function (d) {
+                  return '<a class="layui-btn layui-btn-xs" lay-event="open_img">Xem</a>';
+                },
+              },
+              { field: "name", title: "Khu vực" },
+              { field: "create_time", title: "Thòi gian tạo" },
+              {
+                fixed: "right",
+                title: "Thao tác",
+                fixed: "right",
+                unresize: true,
+                toolbar: "#bar",
+              },
+            ],
+          ],
+          page: true,
+        });
+
+        //头工具栏事件
+        table.on("toolbar(table)", function (obj) {
+          var checkStatus = table.checkStatus(obj.config.id);
+          switch (obj.event) {
+            case "getCheckData":
+              var data = checkStatus.data;
+              layer.alert(JSON.stringify(data));
+              break;
+            case "getCheckLength":
+              var data = checkStatus.data;
+              layer.msg("Đã chọn：" + data.length + " ô");
+              break;
+            case "isAll":
+              layer.msg(checkStatus.isAll ? "Chọn tất cả" : "Không chọn tất cả");
+              break;
+            case "add":
+              layer.open({
+                type: 2,
+                title: "Thêm video",
+                shadeClose: true,
+                shade: false,
+                resize: true,
+                maxmin: true, //开启最大化最小化按钮
+                area: ["893px", "600px"],
+                content: "/admin/xuanfeilist/operation" + "?operation=add",
+              });
+              break;
+          }
+        });
+        form.on("switch(hot)", function (data) {
+          var status = data.elem.checked ? 1 : 0;
+          var id = data.elem.attributes["dataid"].nodeValue;
+          var index = layer.load(0, { shade: false });
+          $.ajax({
+            type: "post",
+            url: "/admin/xuanfeilist/doedithot",
+            data: { id: id, status: status },
+            dataType: "json",
+            success: function (data) {
+              if (data.code === 200) {
+                layer.msg(
+                  data.msg,
+                  {
+                    icon: 1,
+                    time: 1000, //2 giây đóng (nếu không cấu hình, mặc định là 3 giây)
+                  },
+                  function () {
+                    layer.closeAll();
+                    table.reload("table");
+                  }
+                );
+              } else {
+                layer.msg(
+                  data.msg,
+                  {
+                    icon: 2,
+                    time: 1000, //2 giây đóng (nếu không cấu hình, mặc định là 3 giây)
+                  },
+                  function () {
+                    layer.closeAll();
+                    table.reload("table");
+                  }
+                );
+              }
+            },
+            error: function (XMLHttpRequest, textStatus, errorThrown) {
+              layer.closeAll();
+              if (textStatus == "timeout") {
+                layer.msg(
+                  "Yêu cầu đã hết thời gian chờ！",
+                  {
+                    icon: 2,
+                    time: 1500, //2 giây đóng (nếu không cấu hình, mặc định là 3 giây)
+                  },
+                  function () {}
+                );
+              } else {
+                layer.msg(
+                  "Lỗi máy chủ！",
+                  {
+                    icon: 2,
+                    time: 1500, //2 giây đóng (nếu không cấu hình, mặc định là 3 giây)
+                  },
+                  function () {}
+                );
+              }
+            },
+          });
+        });
+        //监听行工具事件
+        table.on("tool(table)", function (obj) {
+          var data = obj.data;
+          if (obj.event === "del") {
+            layer.confirm("Xác nhận xóa dữ liệu？", function (index) {
+              $.ajax({
+                type: "post",
+                url: "/admin/xuanfeilist/dodel",
+                data: { id: data.id },
+                dataType: "json",
+                success: function (data) {
+                  if (data.code === 200) {
+                    layer.msg(
+                      data.msg,
+                      {
+                        icon: 1,
+                        time: 1000, //2 giây đóng (nếu không cấu hình, mặc định là 3 giây)
+                      },
+                      function () {
+                        obj.del();
+                        layer.close(index);
+                        table.reload("table");
+                      }
+                    );
+                  } else {
+                    layer.msg(data.msg);
+                  }
+                },
+                error: function (XMLHttpRequest, textStatus, errorThrown) {
+                  layer.closeAll();
+                  if (textStatus == "timeout") {
+                    layer.msg(
+                      "Yêu cầu đã hết thời gian chờ！",
+                      {
+                        icon: 2,
+                        time: 1500, //2 giây đóng (nếu không cấu hình, mặc định là 3 giây)
+                      },
+                      function () {}
+                    );
+                  } else {
+                    layer.msg(
+                      "Lỗi máy chủ！",
+                      {
+                        icon: 2,
+                        time: 1500, //2 giây đóng (nếu không cấu hình, mặc định là 3 giây)
+                      },
+                      function () {}
+                    );
+                  }
+                },
+              });
+            });
+          } else if (obj.event === "edit") {
+            layer.open({
+              type: 2,
+              title: "Sửa",
+              shadeClose: true,
+              shade: false,
+              resize: true,
+              maxmin: true, //开启最大化最小化按钮
+              area: ["900px", "600px"],
+              content: "/admin/xuanfeilist/operation" + "?operation=edit&id=" + obj.data.id,
+            });
+          } else if (obj.event === "open_video") {
+            layer.open({
+              type: 2,
+              title: false,
+              closeBtn: 0,
+              area: ["900px", "600px"],
+              skin: "layui-layer-nobg", //没有背景色
+              shadeClose: true,
+              content: "/admin/xuanfeilist/play?url=" + obj.data.vod_play_url,
+            });
+          } else if (obj.event === "open_img") {
+            layer.open({
+              type: 1,
+              title: false,
+              closeBtn: 0,
+              area: ["auto"],
+              skin: "layui-layer-nobg", //没有背景色
+              shadeClose: true,
+              content: "<img style='width:500px;height:auto' src='" + obj.data.vod_pic + "'>",
+            });
+          }
+        });
+      });
+    </script>
+    <div class="VIpgJd-ZVi9od-aZ2wEe-wOHMyf">
+      <div class="VIpgJd-ZVi9od-aZ2wEe-OiiCO">
+        <svg xmlns="http://www.w3.org/2000/svg" class="VIpgJd-ZVi9od-aZ2wEe" width="96px" height="96px" viewBox="0 0 66 66">
+          <circle class="VIpgJd-ZVi9od-aZ2wEe-Jt5cK" fill="none" stroke-width="6" stroke-linecap="round" cx="33" cy="33" r="30"></circle>
+        </svg>
+      </div>
+    </div>
+    <iframe frameborder="0" class="VIpgJd-ZVi9od-xl07Ob-OEVmcd skiptranslate" title="Tiện ích dịch ngôn ngữ" style="visibility: visible; box-sizing: content-box; width: 124px; height: 79px; display: none" src="../static/saved_resource(1).html"></iframe>
+  </body>
+</html>

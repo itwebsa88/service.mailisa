@@ -1,0 +1,13 @@
+{
+  "code": 0,
+  "msg": "",
+  "data": [
+    { "id": 8, "name": "banner6", "url": "https://server.thienduongtops.com/banner/20230606/f8ccbb59aee5e48bebc3ab26b6ba2760.jpg", "status": 0, "create_time": "2023-06-06 02:08:14", "update_time": 1686732918 },
+    { "id": 7, "name": "banner5", "url": "https://server.thienduongtops.com/banner/20240428/84d8af96bd88350187102f1302125037.png", "status": 0, "create_time": "2023-06-06 02:08:00", "update_time": 1723613476 },
+    { "id": 6, "name": "banner4", "url": "https://server.thienduongtops.com/banner/20230606/5e2f31d2f39dc0f02ece059565e97cbd.jpg", "status": 0, "create_time": "2023-06-06 02:07:20", "update_time": 1723613478 },
+    { "id": 5, "name": "banner3", "url": "https://server.thienduongtops.com/banner/20230606/a65a6b23275bdeb1613613419a0fff68.jpg", "status": 0, "create_time": "2023-06-05 02:49:09", "update_time": 1723613477 },
+    { "id": 3, "name": "banner2", "url": "https://server.thienduongtops.com/banner/20240428/b0f84a9409a0f2fa827292dbb1c0b8aa.jpg", "status": 0, "create_time": "2022-01-06 22:35:52", "update_time": 1723613478 },
+    { "id": 2, "name": "banner1", "url": "https://server.thienduongtops.com/banner/20240428/39f35d9399f588bd73eb65afcfe2618e.jpg", "status": 1, "create_time": "2021-10-02 16:05:51", "update_time": 1714274440 }
+  ],
+  "count": 6
+}
