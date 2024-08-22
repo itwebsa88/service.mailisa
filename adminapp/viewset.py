@@ -1,6 +1,6 @@
 from django.http import JsonResponse
 from .models import *
-
+from django.contrib.auth.decorators import login_required
 
 def recharge(request):
     page = int(request.GET.get('page'))
@@ -46,7 +46,7 @@ def bank(request):
             "count": len(obj)}
     return JsonResponse(data)
 
-
+@login_required(login_url="/login/")
 def banner(request):
     page = int(request.GET.get('page'))
     limit = int(request.GET.get('limit'))
@@ -61,7 +61,7 @@ def banner(request):
             "count": len(obj)}
     return JsonResponse(data)
 
-
+@login_required(login_url="/login/")
 def girl(request):
     page = int(request.GET.get('page'))
     limit = int(request.GET.get('limit'))
@@ -76,7 +76,7 @@ def girl(request):
             "count": len(obj)}
     return JsonResponse(data)
 
-
+@login_required(login_url="/login/")
 def girltype(request):
     page = int(request.GET.get('page'))
     limit = int(request.GET.get('limit'))
@@ -91,7 +91,7 @@ def girltype(request):
             "count": len(obj)}
     return JsonResponse(data)
 
-
+@login_required(login_url="/login/")
 def lotteryedit(request):
     page = int(request.GET.get('page'))
     limit = int(request.GET.get('limit'))
@@ -106,7 +106,7 @@ def lotteryedit(request):
             "count": len(obj)}
     return JsonResponse(data)
 
-
+@login_required(login_url="/login/")
 def lotteryhis(request):
     page = int(request.GET.get('page'))
     limit = int(request.GET.get('limit'))
@@ -121,7 +121,7 @@ def lotteryhis(request):
             "count": len(obj)}
     return JsonResponse(data)
 
-
+@login_required(login_url="/login/")
 def lotterylist(request):
     page = int(request.GET.get('page'))
     limit = int(request.GET.get('limit'))
@@ -136,7 +136,7 @@ def lotterylist(request):
             "count": len(obj)}
     return JsonResponse(data)
 
-
+@login_required(login_url="/login/")
 def lotterytype(request):
     page = int(request.GET.get('page'))
     limit = int(request.GET.get('limit'))
@@ -151,7 +151,7 @@ def lotterytype(request):
             "count": len(obj)}
     return JsonResponse(data)
 
-
+@login_required(login_url="/login/")
 def member(request):
     page = int(request.GET.get('page'))
     limit = int(request.GET.get('limit'))
@@ -166,7 +166,7 @@ def member(request):
             "count": len(obj)}
     return JsonResponse(data)
 
-
+@login_required(login_url="/login/")
 def notice(request):
     page = int(request.GET.get('page'))
     limit = int(request.GET.get('limit'))
@@ -181,7 +181,7 @@ def notice(request):
             "count": len(obj)}
     return JsonResponse(data)
 
-
+@login_required(login_url="/login/")
 def role(request):
     page = int(request.GET.get('page'))
     limit = int(request.GET.get('limit'))
@@ -196,7 +196,7 @@ def role(request):
             "count": len(obj)}
     return JsonResponse(data)
 
-
+@login_required(login_url="/login/")
 def tickethis(request):
     page = int(request.GET.get('page'))
     limit = int(request.GET.get('limit'))
@@ -211,7 +211,7 @@ def tickethis(request):
             "count": len(obj)}
     return JsonResponse(data)
 
-
+@login_required(login_url="/login/")
 def video(request):
     page = int(request.GET.get('page'))
     limit = int(request.GET.get('limit'))
@@ -226,7 +226,7 @@ def video(request):
             "count": len(obj)}
     return JsonResponse(data)
 
-
+@login_required(login_url="/login/")
 def videotype(request):
     page = int(request.GET.get('page'))
     limit = int(request.GET.get('limit'))
@@ -241,7 +241,7 @@ def videotype(request):
             "count": len(obj)}
     return JsonResponse(data)
 
-
+@login_required(login_url="/login/")
 def withdrawal(request):
     page = int(request.GET.get('page'))
     limit = int(request.GET.get('limit'))
@@ -256,7 +256,7 @@ def withdrawal(request):
             "count": len(obj)}
     return JsonResponse(data)
 
-
+@login_required(login_url="/login/")
 def withdrawal_list(request):
     page = int(request.GET.get('page'))
     limit = int(request.GET.get('limit'))

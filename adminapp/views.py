@@ -11,7 +11,7 @@ from rest_framework.decorators import api_view
 import json
 from .models import *
 
-
+@login_required(login_url="/login/")
 def import_data(request):
     if request.method == 'POST' and request.FILES['json_file']:
         json_file = request.FILES['json_file']
@@ -83,7 +83,7 @@ def register_user(request):
     return render(request, "accounts/register.html", {"form": form, "msg": msg, "success": success})
 
 
-# @login_required(login_url="/login/")
+@login_required(login_url="/login/")
 def index(request):
     context = {'segment': 'index'}
 
@@ -91,7 +91,7 @@ def index(request):
     return HttpResponse(html_template.render(context, request))
 
 
-# @login_required(login_url="/login/")
+@login_required(login_url="/login/")
 def pages(request):
     context = {}
     # All resource paths end in .html.
@@ -117,6 +117,3 @@ def pages(request):
         return HttpResponse(html_template.render(context, request))
 
 
-@api_view(['GET'])
-def recharge(request):
-    return Response()
