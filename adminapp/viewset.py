@@ -1,6 +1,8 @@
 from django.http import JsonResponse
 from .models import *
 from django.contrib.auth.decorators import login_required
+from .forms import *
+from django.shortcuts import render, redirect
 
 def recharge(request):
     page = int(request.GET.get('page'))
@@ -270,3 +272,23 @@ def withdrawal_list(request):
             "data": list(objpagnation.values()),
             "count": len(obj)}
     return JsonResponse(data)
+
+def addmoney(request):
+    mydict={}
+    form = addMoney(request.POST or None , request.FILES or None)
+    if form.is_valid():
+        form.save()
+        return redirect('/')
+    mydict['form']=form
+    return render(request, "member/addmoney.html", mydict)
+
+def doaddmoney(request):
+    pass
+def addmember(request):
+    pass
+def delmember(request):
+    pass
+def editmember(request):
+    pass
+def viewmember(request):
+    pass

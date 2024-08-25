@@ -1,6 +1,5 @@
 {% load static %}
 <!DOCTYPE html>
-<!-- saved from url=(0053)https://server.thienduongtop.online/admin/banks/index -->
 <html lang="vi" style="height: 100%">
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
@@ -95,25 +94,30 @@
             <div class="row">
               <div class="col-lg-12">
                 <div class="card">
-                  <div class="card-header"><h4>Quản Lý Ngân Hàng</h4></div>
+                  <div class="card-header"><h4>Quản lý nhóm quản trị</h4></div>
                   <div class="card-body">
-                    <form class="layui-form" action="https://server.thienduongtop.online/admin/banks/index">
+                    <form class="layui-form" action="https://server.thienduongtop.online/admin/role/index">
                       <div class="layui-form-item">
-                        <label class="layui-form-label">Tên đăng nhập Thành viên</label>
-                        <div class="layui-input-inline">
-                          <input type="text" name="username" placeholder="Nhập từ khóa tìm kiếm" autocomplete="off" class="layui-input" />
-                        </div>
-                        <div class="layui-inline" id="time" lay-key="1" layui-laydate-id="time">
-                          <label class="layui-form-label">Ngày bắt đầu</label>
+                        <div class="layui-inline">
+                          <label class="layui-form-label">Tên nhóm quản trị</label>
                           <div class="layui-input-inline">
-                            <input name="start_time" type="text" autocomplete="off" id="startDate" class="layui-input" placeholder="Ngày bắt đầu" />
+                            <input type="text" name="username" placeholder="Nhập từ khóa tìm kiếm" autocomplete="off" class="layui-input" />
                           </div>
-                          <label class="layui-form-label">Ngày kết thúc</label>
-                          <div class="layui-input-inline">
-                            <input name="end_time" type="text" autocomplete="off" id="endDate" class="layui-input" placeholder="Ngày kết thúc" />
+                          <div class="layui-inline">
+                            <div class="layui-inline" id="time" lay-key="1" layui-laydate-id="time">
+                              <label class="layui-form-label">Ngày bắt đầu</label>
+                              <div class="layui-input-inline">
+                                <input name="start_time" type="text" autocomplete="off" id="startDate" class="layui-input" placeholder="Ngày bắt đầu" />
+                              </div>
+                              <label class="layui-form-label">Ngày kết thúc</label>
+                              <div class="layui-input-inline">
+                                <input name="end_time" type="text" autocomplete="off" id="endDate" class="layui-input" placeholder="Ngày kết thúc" />
+                              </div>
+                            </div>
                           </div>
                         </div>
                       </div>
+
                       <div class="layui-form-item">
                         <div class="layui-inline">
                           <label class="layui-form-label"></label>
@@ -158,13 +162,15 @@
         <button class="layui-btn layui-btn-sm" lay-event="getCheckLength">Lấy số lượng hàng đã chọn</button>
         <button class="layui-btn layui-btn-sm" lay-event="isAll">Xác nhận tất cả đã chọn</button>-->
         <button type="button" class="layui-btn layui-btn-sm" lay-event="add"><i class="layui-icon">&#xe654;</i>Thêm</button>
-        <button type="button" class="layui-btn layui-btn-sm" lay-event="refresh"><i class="layui-icon">&#xe669;</i>Làm mới</button>
+        <button type="button" class="layui-btn layui-btn-sm layui-btn-danger"><i class="layui-icon">&#xe640;</i>Xóa</button>
       </div>
     </script>
+
     <script type="text/html" id="bar">
       <a class="layui-btn layui-btn-xs" lay-event="edit">Sửa</a>
       <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">Xóa</a>
     </script>
+
     <script>
       layui.use(["table", "element", "form", "layer", "laydate"], function () {
         var $ = layui.$,
@@ -181,11 +187,10 @@
         function table_reload(field) {
           layer.msg("Vui lòng chờ！", { icon: 16, shade: 0.01, time: 2000000 });
           table.reload("table", {
-            url: "/bank",
+            url: "role",
             where: {
-              name: field.name,
               username: field.username,
-              key: field.key,
+              status: field.status,
               start_time: field.start_time,
               end_time: field.end_time,
             },
@@ -202,7 +207,7 @@
           var index = layer.load(0, { shade: false });
           $.ajax({
             type: "post",
-            url: "/admin/banks/doeditstate",
+            url: "/admin/role/doeditstate",
             data: { id: id, state: state },
             dataType: "json",
             success: function (data) {
@@ -258,19 +263,22 @@
         });
         table.render({
           elem: "#table",
-          url: "/bank",
+          url: "role",
           toolbar: "#toolbar", // 开启Header工具栏，并为其绑定左侧模板
           defaultToolbar: ["filter", "exports", "print"],
-          title: "Danh sách ngân hàng",
+          title: "Danh sách nhóm quản lý",
           cols: [
             [
               //{type: 'checkbox', fixed: 'left'},
-              { field: "id", title: "ID", sort: true, width: 80 },
-              { field: "username", title: "Người dùng", sort: true },
-              { field: "name", title: "Tên", sort: true },
-              { field: "bankid", title: "STK", sort: true },
-              { field: "bankinfo", title: "Ngân hàng", sort: true },
-              { field: "create_time", title: "Thòi gian tạo", sort: true },
+              { field: "id", title: "ID", width: 50 },
+              { field: "name", title: "Tên" },
+              { field: "count", title: "Số lượng" },
+              /*{field:'role', title:'Quyền hạn',templet:function(d){
+                    let btn = '';
+                    btn = '<a class="layui-btn layui-btn-xs copy layui-btn-warm" lay-event="preview">Xem</a>';
+                    return btn;
+                }},*/
+              { field: "create_time", title: "Thời gian tạo" },
               {
                 fixed: "right",
                 title: "Thao tác",
@@ -298,87 +306,21 @@
             case "isAll":
               layer.msg(checkStatus.isAll ? "Chọn tất cả" : "Không chọn tất cả");
               break;
-            case "refresh":
-              table.reload("table");
-              break;
             case "add":
               layer.open({
                 type: 2,
-                title: "Thêm ngân hàng",
+                title: "Thêm nhóm quản lý",
                 shadeClose: true,
                 shade: false,
                 resize: true,
                 maxmin: true, //开启最大化最小化按钮
                 area: ["893px", "600px"],
-                content: "/admin/banks/operation" + "?operation=add",
+                content: "/admin/role/operation" + "?operation=add",
               });
               break;
           }
         });
-        form.on("switch(status)", function (data) {
-          var status = data.elem.checked ? 1 : 0;
-          var id = data.elem.attributes["dataid"].nodeValue;
-          var index = layer.load(0, { shade: false });
-          $.ajax({
-            type: "post",
-            url: "/admin/banks/doeditstatus",
-            data: { id: id, status: status },
-            dataType: "json",
-            success: function (data) {
-              if (data.code === 200) {
-                layer.msg(
-                  data.msg,
-                  {
-                    icon: 1,
-                    time: 1000, //2 giây đóng (nếu không cấu hình, mặc định là 3 giây)
-                  },
-                  function () {
-                    layer.closeAll();
-                    table.reload("table");
-                  }
-                );
-              } else {
-                layer.msg(
-                  data.msg,
-                  {
-                    icon: 1,
-                    time: 1000, //2 giây đóng (nếu không cấu hình, mặc định là 3 giây)
-                  },
-                  function () {
-                    layer.closeAll();
-                    table.reload("table");
-                  }
-                );
-              }
-            },
-            error: function (XMLHttpRequest, textStatus, errorThrown) {
-              layer.closeAll();
-              if (textStatus == "timeout") {
-                layer.msg(
-                  "Yêu cầu đã hết thời gian chờ！",
-                  {
-                    icon: 2,
-                    time: 1500, //2 giây đóng (nếu không cấu hình, mặc định là 3 giây)
-                  },
-                  function () {
-                    layer.closeAll();
-                  }
-                );
-              } else {
-                layer.msg(
-                  "Lỗi máy chủ！",
-                  {
-                    icon: 2,
-                    time: 1500, //2 giây đóng (nếu không cấu hình, mặc định là 3 giây)
-                  },
-                  function () {
-                    layer.closeAll();
-                  }
-                );
-              }
-            },
-          });
-        });
+
         //监听行工具事件
         table.on("tool(table)", function (obj) {
           var data = obj.data;
@@ -386,7 +328,7 @@
             layer.confirm("Xác nhận xóa dữ liệu？", function (index) {
               $.ajax({
                 type: "post",
-                url: "/admin/banks/dodel",
+                url: "/admin/role/dodel",
                 data: { id: data.id },
                 dataType: "json",
                 success: function (data) {
@@ -431,26 +373,16 @@
                 },
               });
             });
-          } else if (obj.event === "open_ico") {
-            layer.open({
-              type: 1,
-              title: false,
-              closeBtn: 0,
-              area: ["auto"],
-              skin: "layui-layer-nobg", //没有背景色
-              shadeClose: true,
-              content: "<img style='height:300px' src='" + obj.data.url + "'>",
-            });
           } else if (obj.event === "edit") {
             layer.open({
               type: 2,
-              title: "Sửa ngân hàng",
+              title: "Sửa",
               shadeClose: true,
               shade: false,
               resize: true,
               maxmin: true, //开启最大化最小化按钮
               area: ["900px", "600px"],
-              content: "/admin/banks/operation" + "?operation=edit&id=" + obj.data.id,
+              content: "/admin/role/operation" + "?operation=edit&id=" + obj.data.id,
             });
           }
         });

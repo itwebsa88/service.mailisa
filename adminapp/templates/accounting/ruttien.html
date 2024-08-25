@@ -1,6 +1,5 @@
-{% load static %}
+q{% load static %}
 <!DOCTYPE html>
-<!-- saved from url=(0053)https://server.thienduongtop.online/admin/agent/index -->
 <html lang="vi" style="height: 100%">
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
@@ -95,13 +94,91 @@
             <div class="row">
               <div class="col-lg-12">
                 <div class="card">
-                  <div class="card-header"><h4>Danh sách Nhân Viên</h4></div>
+                  <div class="card-header"><h4>Thống Kê Rút Tiền</h4></div>
                   <div class="card-body">
-                    <form class="layui-form" action="https://server.thienduongtop.online/admin/agent/index">
+                    <form class="layui-form" action="https://server.thienduongtop.online/admin/data/withdrawal">
                       <div class="layui-form-item">
-                        <label class="layui-form-label">Tên Đại lý</label>
+                        <label class="layui-form-label">Tài khoản thành viên</label>
                         <div class="layui-input-inline">
-                          <input type="text" name="name" placeholder="Nhập từ khóa tìm kiếm" autocomplete="off" class="layui-input" />
+                          <input type="text" name="username" placeholder="Nhập từ khóa tìm kiếm" autocomplete="off" class="layui-input" />
+                        </div>
+                        <label class="layui-form-label">Đại lý cấp trên</label>
+                        <div class="layui-input-inline">
+                          <select name="uid">
+                            <option value="">Vui lòng chọn</option>
+                            <option value="2">13000000000</option>
+                            <option value="3">john520</option>
+                            <option value="5">ajie</option>
+                            <option value="6">conmeo99</option>
+                            <option value="8">adaa</option>
+                            <option value="9">admins</option>
+                            <option value="10">ada8386</option>
+                            <option value="11">tẽ123</option>
+                            <option value="13">炸塔</option>
+                            <option value="14">阿美</option>
+                            <option value="15">阿超</option>
+                            <option value="16">阿土</option>
+                            <option value="17">阿管</option>
+                            <option value="18">阿峰</option>
+                            <option value="22">榴莲</option>
+                            <option value="23">阿合</option>
+                            <option value="24">关羽</option>
+                            <option value="25">天恒</option>
+                            <option value="26">国武</option>
+                            <option value="27">阿龙</option>
+                            <option value="28">山水</option>
+                            <option value="29">achao</option>
+                          </select>
+                          <div class="layui-unselect layui-form-select">
+                            <div class="layui-select-title"><input type="text" placeholder="Vui lòng chọn" value="" readonly="" class="layui-input layui-unselect" /><i class="layui-edge"></i></div>
+                            <dl class="layui-anim layui-anim-upbit">
+                              <dd lay-value="" class="layui-select-tips">Vui lòng chọn</dd>
+                              <dd lay-value="2" class="">13000000000</dd>
+                              <dd lay-value="3" class="">john520</dd>
+                              <dd lay-value="5" class="">ajie</dd>
+                              <dd lay-value="6" class="">conmeo99</dd>
+                              <dd lay-value="8" class="">adaa</dd>
+                              <dd lay-value="9" class="">admins</dd>
+                              <dd lay-value="10" class="">ada8386</dd>
+                              <dd lay-value="11" class="">tẽ123</dd>
+                              <dd lay-value="13" class="">炸塔</dd>
+                              <dd lay-value="14" class="">阿美</dd>
+                              <dd lay-value="15" class="">阿超</dd>
+                              <dd lay-value="16" class="">阿土</dd>
+                              <dd lay-value="17" class="">阿管</dd>
+                              <dd lay-value="18" class="">阿峰</dd>
+                              <dd lay-value="22" class="">榴莲</dd>
+                              <dd lay-value="23" class="">阿合</dd>
+                              <dd lay-value="24" class="">关羽</dd>
+                              <dd lay-value="25" class="">天恒</dd>
+                              <dd lay-value="26" class="">国武</dd>
+                              <dd lay-value="27" class="">阿龙</dd>
+                              <dd lay-value="28" class="">山水</dd>
+                              <dd lay-value="29" class="">achao</dd>
+                            </dl>
+                          </div>
+                        </div>
+                        <label class="layui-form-label">Tên người nhận</label>
+                        <div class="layui-input-inline">
+                          <input type="text" name="bankname" placeholder="Nhập từ khóa tìm kiếm" autocomplete="off" class="layui-input" />
+                        </div>
+                        <label class="layui-form-label">Trạng thái</label>
+                        <div class="layui-input-inline">
+                          <select name="status">
+                            <option value="">Vui lòng chọn</option>
+                            <option value="1">Đang xem xét</option>
+                            <option value="2">Xác minh thành công</option>
+                            <option value="3">Xác minh trả lại</option>
+                          </select>
+                          <div class="layui-unselect layui-form-select">
+                            <div class="layui-select-title"><input type="text" placeholder="Vui lòng chọn" value="" readonly="" class="layui-input layui-unselect" /><i class="layui-edge"></i></div>
+                            <dl class="layui-anim layui-anim-upbit">
+                              <dd lay-value="" class="layui-select-tips">Vui lòng chọn</dd>
+                              <dd lay-value="1" class="">Đang xem xét</dd>
+                              <dd lay-value="2" class="">Xác minh thành công</dd>
+                              <dd lay-value="3" class="">Xác minh trả lại</dd>
+                            </dl>
+                          </div>
                         </div>
                         <div class="layui-inline" id="time" lay-key="1" layui-laydate-id="time">
                           <label class="layui-form-label">Ngày bắt đầu</label>
@@ -157,15 +234,41 @@
         <!--<button class="layui-btn layui-btn-sm" lay-event="getCheckData">Lấy dữ liệu hàng đã chọn</button>
         <button class="layui-btn layui-btn-sm" lay-event="getCheckLength">Lấy số lượng hàng đã chọn</button>
         <button class="layui-btn layui-btn-sm" lay-event="isAll">Xác nhận tất cả đã chọn</button>-->
-        <button type="button" class="layui-btn layui-btn-sm" lay-event="add"><i class="layui-icon">&#xe654;</i>Thêm</button>
         <button type="button" class="layui-btn layui-btn-sm" lay-event="refresh"><i class="layui-icon">&#xe669;</i>Làm mới</button>
+        <button type="button" class="layui-btn layui-btn-sm layui-btn-danger" data-type="delAll" onclick="delAll()"><i class="layui-icon"></i>Xóa</button>
       </div>
     </script>
-    <script type="text/html" id="bar">
-      <a class="layui-btn layui-btn-xs" lay-event="edit">Sửa</a>
-      <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">Xóa</a>
-    </script>
     <script>
+      function delAll() {
+        //批量Xóa
+        console.log("asd");
+        var data = layui.table.checkStatus("table").data;
+        if (data.length > 0) {
+          delList = [];
+          data.forEach(function (obj, index) {
+            delList.push(obj.id);
+          });
+          layer.confirm("Bạn có chắc muốn xóa " + data.length + " mục này không?", function (index) {
+            $.ajax({
+              url: "/admin/data/dodel",
+              type: "post",
+              dataType: "json",
+              data: "id=" + delList,
+              success: function (res) {
+                if (res.code == 200) {
+                  layer.msg(res.msg);
+                  layui.table.reload("table", {});
+                } else {
+                  layer.msg(res.msg);
+                }
+              },
+            });
+          });
+        } else {
+          layer.msg("Vui lòng chọn các mục cần xóa");
+        }
+      }
+
       layui.use(["table", "element", "form", "layer", "laydate"], function () {
         var $ = layui.$,
           table = layui.table,
@@ -181,11 +284,13 @@
         function table_reload(field) {
           layer.msg("Vui lòng chờ！", { icon: 16, shade: 0.01, time: 2000000 });
           table.reload("table", {
-            url: "/agent",
+            url: "/withdrawal_list",
             where: {
-              name: field.name,
-              cid: field.cid,
-              key: field.key,
+              mid: field.mid,
+              bankname: field.bankname,
+              username: field.username,
+              status: field.status,
+              uid: field.uid,
               start_time: field.start_time,
               end_time: field.end_time,
             },
@@ -202,7 +307,7 @@
           var index = layer.load(0, { shade: false });
           $.ajax({
             type: "post",
-            url: "/admin/agent/doeditstate",
+            url: "/admin/data/doeditstate",
             data: { id: id, state: state },
             dataType: "json",
             success: function (data) {
@@ -256,111 +361,58 @@
             },
           });
         });
+
         table.render({
           elem: "#table",
-          url: "/agent",
+          url: "/withdrawal_list",
           toolbar: "#toolbar", // 开启Header工具栏，并为其绑定左侧模板
           defaultToolbar: ["filter", "exports", "print"],
-          title: "Danh sách Nhân Viên",
+          title: "Ghi chú rút tiền",
+          totalRow: true,
           cols: [
             [
-              { field: "id", title: "ID", width: 50 },
-              { field: "username", title: "Tài khoản", sort: true },
+              // {type: '', fixed: 'left',totalRowText: 'Tổng',width:65},
+              { field: "id", title: "ID", width: 65, totalRow: "Tổng" },
+              { field: "username", title: "Người dùng", sort: true },
+              { field: "name", title: "Tên", sort: true },
+              { field: "uid", title: "Đại lý cấp trên", sort: true },
+              { field: "bankid", title: "STK", sort: true },
+              { field: "bankinfo", title: "Ngân hàng", sort: true },
+              { field: "money", title: "Số tiền", sort: true, totalRow: true },
+              { field: "desc", title: "Nội dung", sort: true },
               {
+                field: "status",
                 title: "Trạng thái",
+                sort: true,
                 templet: function (d) {
-                  let checked = "";
-                  if (d.status == 1) {
-                    checked = "checked";
-                  } else {
-                    checked = " ";
+                  if (d.status === 1) {
+                    return '<div style="color:red">Đang xử lý</div>';
+                  } else if (d.status === 2) {
+                    return '<div style="color:green">Xác minh thành công</div>';
+                  } else if (d.status === 3) {
+                    return '<div style="color:red">Xác minh từ chối</div>';
                   }
-                  return '<input type="checkbox" ' + checked + ' name="status" dataid = "' + d.id + '" lay-skin="switch" lay-filter="status" lay-text="Mở | Đóng">';
                 },
               },
-              { field: "code", title: "Mã mời" },
-              { field: "membercount", title: "Số lượng thành viên" },
-              { field: "role", title: "Quyền" },
-              // {field:'phone', title:'Số điện thoại'},
-              { field: "ip", title: "IP" },
-              //{field:'area', title:'Địa chỉ'},
-              { field: "last_time", title: "Lần đăng nhập cuối" },
-              { field: "create_time", title: "Thời gian tạo" },
               {
-                fixed: "right",
-                title: "Thao tác",
-                fixed: "right",
-                unresize: true,
-                toolbar: "#bar",
+                field: "uid",
+                title: "Người xác minh",
+                sort: true,
+                templet: function (d) {
+                  if (d.uid === 0) {
+                    return '<div style="color:red">Chưa xử lý</div>';
+                  } else {
+                    return '<div style="color:green">' + d.uid + "</div>";
+                  }
+                },
               },
+              { field: "create_time", title: "Thòi gian tạo", sort: true },
+              { field: "create_time", title: "Thời gian xác minh", sort: true },
             ],
           ],
           page: true,
         });
-        form.on("switch(status)", function (data) {
-          var status = data.elem.checked ? 1 : 0;
-          var id = data.elem.attributes["dataid"].nodeValue;
-          var index = layer.load(0, { shade: false });
-          $.ajax({
-            type: "post",
-            url: "/admin/agent/doeditstatus",
-            data: { id: id, status: status },
-            dataType: "json",
-            success: function (data) {
-              if (data.code === 200) {
-                layer.msg(
-                  data.msg,
-                  {
-                    icon: 1,
-                    time: 1000, //2 giây đóng (nếu không cấu hình, mặc định là 3 giây)
-                  },
-                  function () {
-                    layer.closeAll();
-                    table.reload("table");
-                  }
-                );
-              } else {
-                layer.msg(
-                  data.msg,
-                  {
-                    icon: 1,
-                    time: 1000, //2 giây đóng (nếu không cấu hình, mặc định là 3 giây)
-                  },
-                  function () {
-                    layer.closeAll();
-                    table.reload("table");
-                  }
-                );
-              }
-            },
-            error: function (XMLHttpRequest, textStatus, errorThrown) {
-              layer.closeAll();
-              if (textStatus == "timeout") {
-                layer.msg(
-                  "Yêu cầu đã hết thời gian chờ！",
-                  {
-                    icon: 2,
-                    time: 1500, //2 giây đóng (nếu không cấu hình, mặc định là 3 giây)
-                  },
-                  function () {
-                    layer.closeAll();
-                  }
-                );
-              } else {
-                layer.msg(
-                  "Lỗi máy chủ！",
-                  {
-                    icon: 2,
-                    time: 1500, //2 giây đóng (nếu không cấu hình, mặc định là 3 giây)
-                  },
-                  function () {
-                    layer.closeAll();
-                  }
-                );
-              }
-            },
-          });
-        });
+
         //头工具栏事件
         table.on("toolbar(table)", function (obj) {
           var checkStatus = table.checkStatus(obj.config.id);
@@ -379,84 +431,6 @@
             case "refresh":
               table.reload("table");
               break;
-            case "add":
-              layer.open({
-                type: 2,
-                title: "Thêm Đại lý",
-                shadeClose: true,
-                shade: false,
-                resize: true,
-                maxmin: true, //开启最大化最小化按钮
-                area: ["893px", "600px"],
-                content: "/admin/agent/operation" + "?operation=add",
-              });
-              break;
-          }
-        });
-
-        //监听行工具事件
-        table.on("tool(table)", function (obj) {
-          var data = obj.data;
-          if (obj.event === "del") {
-            layer.confirm("Xác nhận xóa dữ liệu？", function (index) {
-              $.ajax({
-                type: "post",
-                url: "/admin/agent/dodel",
-                data: { id: data.id },
-                dataType: "json",
-                success: function (data) {
-                  if (data.code === 200) {
-                    layer.msg(
-                      data.msg,
-                      {
-                        icon: 1,
-                        time: 1000, //2 giây đóng (nếu không cấu hình, mặc định là 3 giây)
-                      },
-                      function () {
-                        obj.del();
-                        layer.close(index);
-                        table.reload("table");
-                      }
-                    );
-                  } else {
-                    layer.msg(data.msg);
-                  }
-                },
-                error: function (XMLHttpRequest, textStatus, errorThrown) {
-                  layer.closeAll();
-                  if (textStatus == "timeout") {
-                    layer.msg(
-                      "Yêu cầu đã hết thời gian chờ！",
-                      {
-                        icon: 2,
-                        time: 1500, //2 giây đóng (nếu không cấu hình, mặc định là 3 giây)
-                      },
-                      function () {}
-                    );
-                  } else {
-                    layer.msg(
-                      "Lỗi máy chủ！",
-                      {
-                        icon: 2,
-                        time: 1500, //2 giây đóng (nếu không cấu hình, mặc định là 3 giây)
-                      },
-                      function () {}
-                    );
-                  }
-                },
-              });
-            });
-          } else if (obj.event === "edit") {
-            layer.open({
-              type: 2,
-              title: "Sửa Đại lý",
-              shadeClose: true,
-              shade: false,
-              resize: true,
-              maxmin: true, //开启最大化最小化按钮
-              area: ["900px", "600px"],
-              content: "/admin/agent/operation" + "?operation=edit&id=" + obj.data.id,
-            });
           }
         });
       });

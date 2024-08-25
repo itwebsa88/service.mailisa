@@ -58,3 +58,31 @@ class SignUpForm(UserCreationForm):
     class Meta:
         model = User
         fields = ('username', 'email', 'password1', 'password2')
+
+class addMoney(forms.Form):
+    money = forms.CharField(
+        widget=forms.TextInput(
+            attrs={
+                "name": "money",
+                "class": "form-control",
+                "placeholder": "Điền số dương là cộng, điền thêm dấu trừ đằng trước để trừ tiền.",
+                "id": "money",
+            }
+        ))
+    desc = forms.CharField(
+        widget=forms.TextInput(
+            attrs={
+                "name": "desc",
+                "class": "form-control",
+                "placeholder": "Nhập nội dung",
+                "id": "desc",
+            }
+        ))
+    abc = ('id', 'status', 'reason')
+    type = forms.CharField(
+        widget=forms.RadioSelect(
+            attrs={
+            "name": "type",
+        }
+        ))
+        

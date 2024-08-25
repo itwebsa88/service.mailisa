@@ -1,129 +1,120 @@
 <!--<link href="https://cdn.jsdelivr.net/npm/@mdi/font@7.4.47/css/materialdesignicons.min.css" rel="stylesheet">-->
 <aside class="layout-sidebar">
-    <!-- logo -->
-    <div id="logo" class="sidebar-header">
-        <a href="https://server.thienduongtop.online/admin/index/index">ADMIN PANEL</a>
+  <!-- logo -->
+  <div id="logo" class="sidebar-header">
+    <a href="https://server.thienduongtop.online/admin/index/index">ADMIN PANEL</a>
+  </div>
+  <div class="layout-sidebar-scroll ps">
+    <nav class="sidebar-main">
+      <ul class="nav nav-drawer">
+        <li class="nav-item">
+          <a href="/"> <i class="mdi mdi-home"></i>Bảng điều khiển </a>
+        </li>
+        <li class="nav-item nav-item-has-subnav">
+          <a href="javascript:void(0)"> <i class="mdi mdi-poll"></i>Thống Kê </a>
+          <ul class="nav nav-subnav">
+            <!--<li><a href="/admin/data/register">Thống Kê Nhân Viên</a></li>-->
+            <li>
+              <a href="{% url 'recharge' %}">Thống Kê Nạp Tiền</a>
+            </li>
+            <li>
+              <a href="{% url 'withdrawal' %}">Thống Kê Rút Tiền</a>
+            </li>
+          </ul>
+        </li>
+        <li class="nav-item nav-item-has-subnav">
+          <a href="javascript:void(0)"> <i class="mdi mdi-bank"></i>Quản Lý Tiền </a>
+          <ul class="nav nav-subnav">
+            <li>
+              <a href="{% url 'withdrawal_process' %}">Quản Lý Rút Tiền</a>
+            </li>
+            <li>
+              <a href="{% url 'bank' %}">Quản Lý Ngân Hàng</a>
+            </li>
+          </ul>
+        </li>
+        <li class="nav-item nav-item-has-subnav">
+          <a href="javascript:void(0)"> <i class="mdi mdi-account"></i>Quản Lý Nhân Viên </a>
+          <ul class="nav nav-subnav">
+            <!--<li><a href="/admin/user/index">Quản Trị Viên</a></li>-->
+            <li>
+              <a href="{% url 'agent' %}">Danh Sách Nhân Viên</a>
+            </li>
+            <li>
+              <a href="{% url 'role' %}">Phân Quyền Nhân Viên</a>
+            </li>
+            <!--<li><a href="/admin/log/index">Quản Lý Nhật Ký</a></li>-->
+          </ul>
+        </li>
+        <li class="nav-item">
+          <a href="{% url 'member' %}"> <i class="mdi mdi-account-multiple"></i>Quản Lý Thành Viên </a>
+        </li>
+        <li class="nav-item nav-item-has-subnav">
+          <a href="javascript:void(0)"> <i class="mdi mdi-gamepad-variant"></i>Quản Lý Bình Chọn </a>
+          <ul class="nav nav-subnav">
+            <li>
+              <a href="{% url 'lotteryclass' %}">Phân Loại</a>
+            </li>
+            <li>
+              <a href="{% url 'lotteryedit' %}">Danh sách</a>
+            </li>
+            <li>
+              <a href="{% url 'lotteryresult' %}">Lịch Sử Kết Quả</a>
+            </li>
+            <li>
+              <a href="{% url 'lotteryhistory' %}">Lịch Sử Bình Chọn</a>
+            </li>
+            <li>
+              <a href="{% url 'lotteryedit' %}">Chỉnh Kết Quả</a>
+            </li>
+          </ul>
+        </li>
+        <li class="nav-item nav-item-has-subnav">
+          <a href="javascript:void(0)"> <i class="mdi mdi-video"></i>Quản Lý Video </a>
+          <ul class="nav nav-subnav">
+            <li>
+              <a href="{% url 'video' %}">Danh Mục Video</a>
+            </li>
+            <li>
+              <a href="{% url 'videoclass' %}">Danh Sách Video</a>
+            </li>
+          </ul>
+        </li>
+        <li class="nav-item nav-item-has-subnav">
+          <a href="javascript:void(0)"> <i class="mdi mdi-video"></i>Quản Lý Girls </a>
+          <ul class="nav nav-subnav">
+            <li>
+              <a href="{% url 'girlclass' %}">Khu Vực</a>
+            </li>
+            <li>
+              <a href="{% url 'girl' %}">Danh Sách Girls</a>
+            </li>
+          </ul>
+        </li>
+        <li class="nav-item nav-item-has-subnav">
+          <a href="javascript:void(0)"> <i class="mdi mdi-cog"></i>Cài Đặt Hệ Thống</a>
+          <ul class="nav nav-subnav">
+            <li>
+              <a href="{% url 'config' %}">Cấu Hình Cơ Bản</a>
+            </li>
+            <li>
+              <a href="{% url 'notice' %}">Cấu Hình Thông Báo</a>
+            </li>
+            <li>
+              <a href="{% url 'banner' %}">Cấu Hình Banner</a>
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </nav>
+    <div class="sidebar-footer">
+      <p class="copyright">Copyright © 2023. All rights <a href="https://server.thienduongtop.online/">reserved</a>.</p>
     </div>
-    <div class="layout-sidebar-scroll ps">
-        <nav class="sidebar-main">
-            <ul class="nav nav-drawer">
-                <li class="nav-item ">
-                    <a href="/">
-                        <i class="mdi mdi-home"></i>Bảng điều khiển </a>
-                </li>
-                <li class="nav-item nav-item-has-subnav ">
-                    <a href="javascript:void(0)">
-                        <i class="mdi mdi-poll"></i>Thống Kê </a>
-                    <ul class="nav nav-subnav">
-                        <!--<li><a href="/admin/data/register">Thống Kê Nhân Viên</a></li>-->
-                        <li>
-                            <a href="/thongkenaptien.html">Thống Kê Nạp Tiền</a>
-                        </li>
-                        <li>
-                            <a href="/thongkeruttien.html">Thống Kê Rút Tiền</a>
-                        </li>
-                    </ul>
-                </li>
-                <li class="nav-item nav-item-has-subnav ">
-                    <a href="javascript:void(0)">
-                        <i class="mdi mdi-bank"></i>Quản Lý Tiền </a>
-                    <ul class="nav nav-subnav">
-                        <li>
-                            <a href="/quanlyruttien.html">Quản Lý Rút Tiền</a>
-                        </li>
-                        <li>
-                            <a href="/quanlynganhang.html">Quản Lý Ngân Hàng</a>
-                        </li>
-                    </ul>
-                </li>
-                <li class="nav-item nav-item-has-subnav ">
-                    <a href="javascript:void(0)">
-                        <i class="mdi mdi-account"></i>Quản Lý Nhân Viên </a>
-                    <ul class="nav nav-subnav">
-                        <!--<li><a href="/admin/user/index">Quản Trị Viên</a></li>-->
-                        <li>
-                            <a href="/danhsachnhanvien.html">Danh Sách Nhân Viên</a>
-                        </li>
-                        <li>
-                            <a href="/phanquyennhanvien.html">Phân Quyền Nhân Viên</a>
-                        </li>
-                        <!--<li><a href="/admin/log/index">Quản Lý Nhật Ký</a></li>-->
-                    </ul>
-                </li>
-                <li class="nav-item">
-                    <a href="/quanlythanhvien.html">
-                        <i class="mdi mdi-account-multiple"></i>Quản Lý Thành Viên </a>
-                </li>
-                <li class="nav-item nav-item-has-subnav">
-                    <a href="javascript:void(0)">
-                        <i class="mdi mdi-gamepad-variant"></i>Quản Lý Bình Chọn </a>
-                    <ul class="nav nav-subnav">
-                        <li>
-                            <a href="/xosophanloai.html">Phân Loại</a>
-                        </li>
-                        <li>
-                            <a href="/xosodanhsach.html">Danh sách</a>
-                        </li>
-                        <li>
-                            <a href="/xosoketqua.html">Lịch Sử Kết Quả</a>
-                        </li>
-                        <li>
-                            <a href="/lichsubinhchon.html">Lịch Sử Bình Chọn</a>
-                        </li>
-                        <li>
-                            <a href="/xosochinhsua.html">Chỉnh Kết Quả</a>
-                        </li>
-                    </ul>
-                </li>
-                <li class="nav-item nav-item-has-subnav ">
-                    <a href="javascript:void(0)">
-                        <i class="mdi mdi-video"></i>Quản Lý Video </a>
-                    <ul class="nav nav-subnav">
-                        <li>
-                            <a href="/danhmucvideo.html">Danh Mục Video</a>
-                        </li>
-                        <li>
-                            <a href="/danhsachvideo.html">Danh Sách Video</a>
-                        </li>
-                    </ul>
-                </li>
-                <li class="nav-item nav-item-has-subnav ">
-                    <a href="javascript:void(0)">
-                        <i class="mdi mdi-video"></i>Quản Lý Girls </a>
-                    <ul class="nav nav-subnav">
-                        <li>
-                            <a href="/khuvuc.html">Khu Vực</a>
-                        </li>
-                        <li>
-                            <a href="/danhsachgirl.html">Danh Sách Girls</a>
-                        </li>
-                    </ul>
-                </li>
-                <li class="nav-item nav-item-has-subnav">
-                    <a href="javascript:void(0)">
-                        <i class="mdi mdi-cog"></i>Cài Đặt Hệ Thống</a>
-                    <ul class="nav nav-subnav">
-                        <li>
-                            <a href="/cauhinh.html">Cấu Hình Cơ Bản</a>
-                        </li>
-                        <li>
-                            <a href="/thongbao.html">Cấu Hình Thông Báo</a>
-                        </li>
-                        <li>
-                            <a href="/banner.html">Cấu Hình Banner</a>
-                        </li>
-                    </ul>
-                </li>
-            </ul>
-        </nav>
-        <div class="sidebar-footer">
-            <p class="copyright">Copyright © 2023. All rights <a href="https://server.thienduongtop.online/">reserved</a>. </p>
-        </div>
-        <div class="ps__rail-x" style="left: 0px; bottom: 2px;">
-            <div class="ps__thumb-x" tabindex="0" style="left: 0px; width: 0px;"></div>
-        </div>
-        <div class="ps__rail-y" style="top: 0px; right: 2px;">
-            <div class="ps__thumb-y" tabindex="0" style="top: 0px; height: 0px;"></div>
-        </div>
+    <div class="ps__rail-x" style="left: 0px; bottom: 2px">
+      <div class="ps__thumb-x" tabindex="0" style="left: 0px; width: 0px"></div>
     </div>
+    <div class="ps__rail-y" style="top: 0px; right: 2px">
+      <div class="ps__thumb-y" tabindex="0" style="top: 0px; height: 0px"></div>
+    </div>
+  </div>
 </aside>

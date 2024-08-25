@@ -87,7 +87,7 @@ def register_user(request):
 def index(request):
     context = {'segment': 'index'}
 
-    html_template = loader.get_template('index.html')
+    html_template = loader.get_template('index/index.html')
     return HttpResponse(html_template.render(context, request))
 
 
@@ -116,4 +116,117 @@ def pages(request):
         html_template = loader.get_template('page-500.html')
         return HttpResponse(html_template.render(context, request))
 
+@login_required(login_url="/login/")
+def recharge(request):
+    context = {}
+    html_template = loader.get_template('accounting/naptien.html')
+    return HttpResponse(html_template.render(context, request))
+
+@login_required(login_url="/login/")
+def withdrawal(request):
+    context = {}
+    html_template = loader.get_template('accounting/ruttien.html')
+    return HttpResponse(html_template.render(context, request))
+
+@login_required(login_url="/login/")
+def withdrawal_process(request):
+    context = {}
+    html_template = loader.get_template('management/ruttien.html')
+    return HttpResponse(html_template.render(context, request))
+
+@login_required(login_url="/login/")
+def bank(request):
+    context = {}
+    html_template = loader.get_template('management/nganhang.html')
+    return HttpResponse(html_template.render(context, request))
+
+@login_required(login_url="/login/")
+def agent(request):
+    context = {}
+    html_template = loader.get_template('agent/nhanvien.html')
+    return HttpResponse(html_template.render(context, request))
+
+@login_required(login_url="/login/")
+def role(request):
+    context = {}
+    html_template = loader.get_template('agent/phanquyen.html')
+    return HttpResponse(html_template.render(context, request))
+
+@login_required(login_url="/login/")
+def member(request):
+    context = {}
+    html_template = loader.get_template('member/member.html')
+    return HttpResponse(html_template.render(context, request))
+
+@login_required(login_url="/login/")
+def lottery(request):
+    context = {}
+    html_template = loader.get_template('lottery/danhsach.html')
+    return HttpResponse(html_template.render(context, request))
+
+@login_required(login_url="/login/")
+def lotteryclass(request):
+    context = {}
+    html_template = loader.get_template('lottery/danhmuc.html')
+    return HttpResponse(html_template.render(context, request))
+
+@login_required(login_url="/login/")
+def lotteryresult(request):
+    context = {}
+    html_template = loader.get_template('lottery/ketqua.html')
+    return HttpResponse(html_template.render(context, request))
+
+@login_required(login_url="/login/")
+def lotteryhistory(request):
+    context = {}
+    html_template = loader.get_template('lottery/lichsu.html')
+    return HttpResponse(html_template.render(context, request))
+
+@login_required(login_url="/login/")
+def lotteryedit(request):
+    context = {}
+    html_template = loader.get_template('lottery/chinhsua.html')
+    return HttpResponse(html_template.render(context, request))
+
+@login_required(login_url="/login/")
+def video(request):
+    context = {}
+    html_template = loader.get_template('video/danhsach.html')
+    return HttpResponse(html_template.render(context, request))
+
+@login_required(login_url="/login/")
+def videoclass(request):
+    context = {}
+    html_template = loader.get_template('video/danhmuc.html')
+    return HttpResponse(html_template.render(context, request))
+
+@login_required(login_url="/login/")
+def girl(request):
+    context = {}
+    html_template = loader.get_template('girl/danhsach.html')
+    return HttpResponse(html_template.render(context, request))
+
+@login_required(login_url="/login/")
+def girlclass(request):
+    context = {}
+    html_template = loader.get_template('girl/danhmuc.html')
+    return HttpResponse(html_template.render(context, request))
+
+@login_required(login_url="/login/")
+def config(request):
+    context = {}
+    html_template = loader.get_template('config/caidat.html')
+    return HttpResponse(html_template.render(context, request))
+
+@login_required(login_url="/login/")
+def notice(request):
+    context = {}
+    html_template = loader.get_template('config/thongbao.html')
+    return HttpResponse(html_template.render(context, request))
+
+@login_required(login_url="/login/")
+def banner(request):
+    context = {}
+    html_template = loader.get_template('config/banner')
+    return HttpResponse(html_template.render(context, request))
 
