@@ -214,7 +214,9 @@
                 <div class="col-lg-12">
                   <div class="card">
                     <div class="card-body">
-                      <table style="height: 125px" width="640" cellspacing="0" cellpadding="2" class="layui-hide" id="table" lay-filter="table"></table>
+                      <table style="height: 125px" width="640" cellspacing="0" cellpadding="2" class="layui-hide" id="table" lay-filter="table">
+                        {% csrf_token %}
+                      </table>
                     </div>
                   </div>
                 </div>
@@ -347,7 +349,7 @@
         });
         table.render({
           elem: "#table",
-          url: "member",
+          url: "/member",
           toolbar: "#toolbar", // 开启Header工具栏，并为其绑定左侧模板
           defaultToolbar: ["filter", "exports", "print"],
           title: "Danh sách quản trị viên",
@@ -404,8 +406,8 @@
           var index = layer.load(0, { shade: false });
           $.ajax({
             type: "post",
-            url: "/admin/member/doeditstatus",
-            data: { id: id, status: status },
+            url: "/member/doeditstatus",
+            data: { 'id': id, 'status': status, 'csrfmiddlewaretoken': 'csrf' },
             dataType: "json",
             success: function (data) {
               if (data.code === 200) {
@@ -486,7 +488,7 @@
                 resize: true,
                 maxmin: true, //开启最大化最小化按钮
                 area: ["893px", "600px"],
-                content: "/admin/member/operation" + "?operation=add",
+                content: "/member/add" + "?operation=add",
               });
               break;
           }
@@ -499,7 +501,7 @@
             layer.confirm("Xác nhận xóa dữ liệu？", function (index) {
               $.ajax({
                 type: "post",
-                url: "/admin/member/dodel",
+                url: "/member/dodel",
                 data: { id: data.id },
                 dataType: "json",
                 success: function (data) {
@@ -553,7 +555,7 @@
               resize: true,
               maxmin: true, //开启最大化最小化按钮
               area: ["900px", "600px"],
-              content: "/admin/member/operation" + "?operation=edit&id=" + obj.data.id,
+              content: "/member/edit" + "?operation=edit&id=" + obj.data.id,
             });
           } else if (obj.event === "open_ico") {
             layer.open({

@@ -96,7 +96,7 @@
                 <div class="card">
                   <div class="card-header"><h4>Quản Lý Ngân Hàng</h4></div>
                   <div class="card-body">
-                    <form class="layui-form" action="https://server.thienduongtop.online/admin/banks/index">
+                    <form class="layui-form" action="/manage/bank">
                       <div class="layui-form-item">
                         <label class="layui-form-label">Tên đăng nhập Thành viên</label>
                         <div class="layui-input-inline">
@@ -201,7 +201,7 @@
           var index = layer.load(0, { shade: false });
           $.ajax({
             type: "post",
-            url: "/admin/banks/doeditstate",
+            url: "/bank/doeditstate",
             data: { id: id, state: state },
             dataType: "json",
             success: function (data) {
@@ -309,7 +309,7 @@
                 resize: true,
                 maxmin: true, //开启最大化最小化按钮
                 area: ["893px", "600px"],
-                content: "/admin/banks/operation" + "?operation=add",
+                content: "/bank/operation" + "?operation=add",
               });
               break;
           }
@@ -320,7 +320,7 @@
           var index = layer.load(0, { shade: false });
           $.ajax({
             type: "post",
-            url: "/admin/banks/doeditstatus",
+            url: "/bank/doeditstatus",
             data: { id: id, status: status },
             dataType: "json",
             success: function (data) {
@@ -385,7 +385,7 @@
             layer.confirm("Xác nhận xóa dữ liệu？", function (index) {
               $.ajax({
                 type: "post",
-                url: "/admin/banks/dodel",
+                url: "/bank/dodel",
                 data: { id: data.id },
                 dataType: "json",
                 success: function (data) {
@@ -449,7 +449,7 @@
               resize: true,
               maxmin: true, //开启最大化最小化按钮
               area: ["900px", "600px"],
-              content: "/admin/banks/operation" + "?operation=edit&id=" + obj.data.id,
+              content: "/bank/operation" + "?operation=edit&id=" + obj.data.id,
             });
           }
         });

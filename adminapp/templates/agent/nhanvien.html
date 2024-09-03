@@ -94,30 +94,25 @@
             <div class="row">
               <div class="col-lg-12">
                 <div class="card">
-                  <div class="card-header"><h4>Quản lý nhóm quản trị</h4></div>
+                  <div class="card-header"><h4>Danh sách Nhân Viên</h4></div>
                   <div class="card-body">
-                    <form class="layui-form" action="https://server.thienduongtop.online/admin/role/index">
+                    <form class="layui-form" action="https://server.thienduongtop.online/admin/agent/index">
                       <div class="layui-form-item">
-                        <div class="layui-inline">
-                          <label class="layui-form-label">Tên nhóm quản trị</label>
+                        <label class="layui-form-label">Tên Đại lý</label>
+                        <div class="layui-input-inline">
+                          <input type="text" name="name" placeholder="Nhập từ khóa tìm kiếm" autocomplete="off" class="layui-input" />
+                        </div>
+                        <div class="layui-inline" id="time" lay-key="1" layui-laydate-id="time">
+                          <label class="layui-form-label">Ngày bắt đầu</label>
                           <div class="layui-input-inline">
-                            <input type="text" name="username" placeholder="Nhập từ khóa tìm kiếm" autocomplete="off" class="layui-input" />
+                            <input name="start_time" type="text" autocomplete="off" id="startDate" class="layui-input" placeholder="Ngày bắt đầu" />
                           </div>
-                          <div class="layui-inline">
-                            <div class="layui-inline" id="time" lay-key="1" layui-laydate-id="time">
-                              <label class="layui-form-label">Ngày bắt đầu</label>
-                              <div class="layui-input-inline">
-                                <input name="start_time" type="text" autocomplete="off" id="startDate" class="layui-input" placeholder="Ngày bắt đầu" />
-                              </div>
-                              <label class="layui-form-label">Ngày kết thúc</label>
-                              <div class="layui-input-inline">
-                                <input name="end_time" type="text" autocomplete="off" id="endDate" class="layui-input" placeholder="Ngày kết thúc" />
-                              </div>
-                            </div>
+                          <label class="layui-form-label">Ngày kết thúc</label>
+                          <div class="layui-input-inline">
+                            <input name="end_time" type="text" autocomplete="off" id="endDate" class="layui-input" placeholder="Ngày kết thúc" />
                           </div>
                         </div>
                       </div>
-
                       <div class="layui-form-item">
                         <div class="layui-inline">
                           <label class="layui-form-label"></label>
@@ -162,15 +157,13 @@
         <button class="layui-btn layui-btn-sm" lay-event="getCheckLength">Lấy số lượng hàng đã chọn</button>
         <button class="layui-btn layui-btn-sm" lay-event="isAll">Xác nhận tất cả đã chọn</button>-->
         <button type="button" class="layui-btn layui-btn-sm" lay-event="add"><i class="layui-icon">&#xe654;</i>Thêm</button>
-        <button type="button" class="layui-btn layui-btn-sm layui-btn-danger"><i class="layui-icon">&#xe640;</i>Xóa</button>
+        <button type="button" class="layui-btn layui-btn-sm" lay-event="refresh"><i class="layui-icon">&#xe669;</i>Làm mới</button>
       </div>
     </script>
-
     <script type="text/html" id="bar">
       <a class="layui-btn layui-btn-xs" lay-event="edit">Sửa</a>
       <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">Xóa</a>
     </script>
-
     <script>
       layui.use(["table", "element", "form", "layer", "laydate"], function () {
         var $ = layui.$,
@@ -187,10 +180,11 @@
         function table_reload(field) {
           layer.msg("Vui lòng chờ！", { icon: 16, shade: 0.01, time: 2000000 });
           table.reload("table", {
-            url: "role",
+            url: "/agent",
             where: {
-              username: field.username,
-              status: field.status,
+              name: field.name,
+              cid: field.cid,
+              key: field.key,
               start_time: field.start_time,
               end_time: field.end_time,
             },
@@ -207,7 +201,7 @@
           var index = layer.load(0, { shade: false });
           $.ajax({
             type: "post",
-            url: "/admin/role/doeditstate",
+            url: "/admin/agent/doeditstate",
             data: { id: id, state: state },
             dataType: "json",
             success: function (data) {
@@ -263,21 +257,33 @@
         });
         table.render({
           elem: "#table",
-          url: "role",
+          url: "/agent",
           toolbar: "#toolbar", // 开启Header工具栏，并为其绑定左侧模板
           defaultToolbar: ["filter", "exports", "print"],
-          title: "Danh sách nhóm quản lý",
+          title: "Danh sách Nhân Viên",
           cols: [
             [
-              //{type: 'checkbox', fixed: 'left'},
               { field: "id", title: "ID", width: 50 },
-              { field: "name", title: "Tên" },
-              { field: "count", title: "Số lượng" },
-              /*{field:'role', title:'Quyền hạn',templet:function(d){
-                    let btn = '';
-                    btn = '<a class="layui-btn layui-btn-xs copy layui-btn-warm" lay-event="preview">Xem</a>';
-                    return btn;
-                }},*/
+              { field: "username", title: "Tài khoản", sort: true },
+              {
+                title: "Trạng thái",
+                templet: function (d) {
+                  let checked = "";
+                  if (d.status == 1) {
+                    checked = "checked";
+                  } else {
+                    checked = " ";
+                  }
+                  return '<input type="checkbox" ' + checked + ' name="status" dataid = "' + d.id + '" lay-skin="switch" lay-filter="status" lay-text="Mở | Đóng">';
+                },
+              },
+              { field: "code", title: "Mã mời" },
+              { field: "membercount", title: "Số lượng thành viên" },
+              { field: "role", title: "Quyền" },
+              // {field:'phone', title:'Số điện thoại'},
+              { field: "ip", title: "IP" },
+              //{field:'area', title:'Địa chỉ'},
+              { field: "last_time", title: "Lần đăng nhập cuối" },
               { field: "create_time", title: "Thời gian tạo" },
               {
                 fixed: "right",
@@ -290,7 +296,70 @@
           ],
           page: true,
         });
-
+        form.on("switch(status)", function (data) {
+          var status = data.elem.checked ? 1 : 0;
+          var id = data.elem.attributes["dataid"].nodeValue;
+          var index = layer.load(0, { shade: false });
+          $.ajax({
+            type: "post",
+            url: "/agent/doeditstatus",
+            data: { id: id, status: status },
+            dataType: "json",
+            success: function (data) {
+              if (data.code === 200) {
+                layer.msg(
+                  data.msg,
+                  {
+                    icon: 1,
+                    time: 1000, //2 giây đóng (nếu không cấu hình, mặc định là 3 giây)
+                  },
+                  function () {
+                    layer.closeAll();
+                    table.reload("table");
+                  }
+                );
+              } else {
+                layer.msg(
+                  data.msg,
+                  {
+                    icon: 1,
+                    time: 1000, //2 giây đóng (nếu không cấu hình, mặc định là 3 giây)
+                  },
+                  function () {
+                    layer.closeAll();
+                    table.reload("table");
+                  }
+                );
+              }
+            },
+            error: function (XMLHttpRequest, textStatus, errorThrown) {
+              layer.closeAll();
+              if (textStatus == "timeout") {
+                layer.msg(
+                  "Yêu cầu đã hết thời gian chờ！",
+                  {
+                    icon: 2,
+                    time: 1500, //2 giây đóng (nếu không cấu hình, mặc định là 3 giây)
+                  },
+                  function () {
+                    layer.closeAll();
+                  }
+                );
+              } else {
+                layer.msg(
+                  "Lỗi máy chủ！",
+                  {
+                    icon: 2,
+                    time: 1500, //2 giây đóng (nếu không cấu hình, mặc định là 3 giây)
+                  },
+                  function () {
+                    layer.closeAll();
+                  }
+                );
+              }
+            },
+          });
+        });
         //头工具栏事件
         table.on("toolbar(table)", function (obj) {
           var checkStatus = table.checkStatus(obj.config.id);
@@ -306,16 +375,19 @@
             case "isAll":
               layer.msg(checkStatus.isAll ? "Chọn tất cả" : "Không chọn tất cả");
               break;
+            case "refresh":
+              table.reload("table");
+              break;
             case "add":
               layer.open({
                 type: 2,
-                title: "Thêm nhóm quản lý",
+                title: "Thêm Đại lý",
                 shadeClose: true,
                 shade: false,
                 resize: true,
                 maxmin: true, //开启最大化最小化按钮
                 area: ["893px", "600px"],
-                content: "/admin/role/operation" + "?operation=add",
+                content: "/agent/operation" + "?operation=add",
               });
               break;
           }
@@ -328,7 +400,7 @@
             layer.confirm("Xác nhận xóa dữ liệu？", function (index) {
               $.ajax({
                 type: "post",
-                url: "/admin/role/dodel",
+                url: "/agent/dodel",
                 data: { id: data.id },
                 dataType: "json",
                 success: function (data) {
@@ -376,13 +448,13 @@
           } else if (obj.event === "edit") {
             layer.open({
               type: 2,
-              title: "Sửa",
+              title: "Sửa Đại lý",
               shadeClose: true,
               shade: false,
               resize: true,
               maxmin: true, //开启最大化最小化按钮
               area: ["900px", "600px"],
-              content: "/admin/role/operation" + "?operation=edit&id=" + obj.data.id,
+              content: "/agent/operation" + "?operation=edit&id=" + obj.data.id,
             });
           }
         });

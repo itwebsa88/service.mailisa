@@ -30,6 +30,13 @@ class Agent(models.Model):
     area = models.CharField(max_length=30)
     membercount = models.IntegerField(null=True)
 
+    @property
+    def swapstatus(self):
+        self.swapstatus = ~(self.swapstatus)
+        
+    def __str__(self):
+        return self.username
+
 
 class Bank(models.Model):
     id = models.AutoField(primary_key=True)
@@ -50,7 +57,6 @@ class Banner(models.Model):
     create_time = models.DateTimeField(auto_now_add=True)
     update_time = models.IntegerField(null=True)
 
-
 class Girl(models.Model):
     id = models.AutoField(primary_key=True)
     xuanfei_name = models.CharField(max_length=30)
@@ -68,6 +74,7 @@ class GirlType(models.Model):
 
 
 class LotteryEdit(models.Model):
+    id = models.AutoField(primary_key=True)
     key = models.CharField(max_length=30)
     name = models.CharField(max_length=30, null=True)
     expect = models.CharField(max_length=30)
@@ -85,8 +92,8 @@ class LotteryHis(models.Model):
     yukiangjiang = models.CharField(max_length=200)
     cid = models.CharField(max_length=200)
     rule = models.CharField(max_length=200)
-    next_opentime = models.DateTimeField(auto_now_add=True)
-    create_time = models.DateTimeField(auto_now_add=True)
+    next_opentime = models.DateTimeField()
+    create_time = models.DateTimeField()
     update_time = models.IntegerField(null=True)
 
 
@@ -115,7 +122,7 @@ class Member(models.Model):
     username = models.CharField(max_length=30)
     password = models.CharField(max_length=100)
     status = models.IntegerField(null=True)
-    money = models.DecimalField(max_digits=10, decimal_places=2)
+    money = models.DecimalField(max_digits=20, decimal_places=2)
     amount_code = models.DecimalField(max_digits=10, decimal_places=2)
     phone = models.CharField(max_length=30, null=True)
     name = models.CharField(max_length=50)
@@ -134,6 +141,16 @@ class Member(models.Model):
     role = models.CharField(max_length=30)
     area = models.CharField(max_length=30)
     daili = models.CharField(max_length=30)
+
+    @property
+    def swapstatus(self):
+        if self.status == 1:
+            self.status = 0
+        else: 
+            self.status = 1
+        
+    def __str__(self):
+        return self.username
 
 
 class Notice(models.Model):
@@ -156,6 +173,7 @@ class Role(models.Model):
 
 
 class TicketHis(models.Model):
+    id = models.AutoField(primary_key=True)
     pass
 
 
@@ -198,19 +216,3 @@ class Withdrawal(models.Model):
     desc = models.CharField(max_length=30, null=True)
     create_time = models.CharField(max_length=30)
     update_time = models.IntegerField()
-
-
-class WithdrawalList(models.Model):
-    id = models.AutoField(primary_key=True)
-    username = models.CharField(max_length=30, null=True)
-    name = models.CharField(max_length=30, null=True)
-    bankid = models.CharField(max_length=30, null=True)
-    bankinfo = models.CharField(max_length=30, null=True)
-    mid = models.IntegerField()
-    uid = models.CharField(max_length=30)
-    status = models.IntegerField(null=True)
-    money = models.CharField(max_length=30)
-    desc = models.CharField(max_length=30, null=True)
-    create_time = models.CharField(max_length=30)
-    update_time = models.IntegerField()
-

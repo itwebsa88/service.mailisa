@@ -1,0 +1,1342 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="vi" style="height: 100%">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
+    <title>ADMIN PANEL</title>
+    <link rel="icon" href="https://server.thienduongtop.online/favicon.ico" type="image/ico" />
+    <meta name="author" content="yinqi" />
+
+    <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet" />
+    <link href="{% static 'css/style.css' %}" rel="stylesheet" />
+    <link href="//cdnjs.cloudflare.com/ajax/libs/layui/2.9.14/css/layui.css" rel="stylesheet" />
+    <style type="text/css" media="all">
+      .layui-form-label {
+        width: 100px;
+      }
+      .layui-layout {
+        margin-top: 10px;
+      }
+      .sidebar-header {
+        height: 70px;
+      }
+      .sidebar-header a {
+        font-size: 30px;
+        color: #fff;
+        line-height: 68px;
+      }
+    </style>
+    <style>
+      .layui-btn.layui-btn-sm.layui-btn-danger {
+        display: none;
+      }
+      @media (max-width: 600px) {
+        .card-body:has(.layui-form-item) {
+          display: none;
+        }
+      }
+    </style>
+    <script type="text/javascript">
+      function googleTranslateElementInit() {
+        new google.translate.TranslateElement(
+          {
+            pageLanguage: "vi",
+            includedLanguages: "en,zh-CN,vi",
+            layout: google.translate.TranslateElement.InlineLayout.SIMPLE,
+            autoDisplay: false,
+          },
+          "google_translate_element"
+        );
+      }
+    </script>
+    <script src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit" type="text/javascript"></script>
+  </head>
+
+  <body data-logobg="color_8" data-sidebarbg="color_8">
+    <div class="layout-web">
+      <div class="layout-container">
+        <main class="layui-layout">
+          <div class="container-fluid">
+            <div class="row">
+              <div class="col-md-12">
+                <div class="card">
+                  <div class="card-header">
+                    {% if type == 'add' %}
+                    <h4>Thêm ngân hàng</h4>
+                    {% elif type == 'edit' %}
+                    <h4>Sửa ngân hàng</h4>
+                    {% endif %}
+                  </div>
+                  <div class="card-body">
+                    <form class="layui-form" id="loginfrom">
+                      {% csrf_token %}
+                      <input type="hidden" id="id" name="id" value="{{request.GET.id}}" />
+                      {{form.id}} {{ form.uid }}
+                      <div class="form-group">
+                        <label> Tên đăng nhập </label>
+                        {% if type == 'add' %}
+                        <input autocomplete="off" class="layui-input" id="HandoverCompany" lay-verify="required" style="position: absolute; z-index: 2; width: 80%" type="text" value="" />
+                        <select autocomplete="off" class="layui-select" id="uid" lay-filter="uid" lay-search lay-verify="required" name="uid" type="text">
+                          <option value="1">cs003</option>
+                          <option value="2">jj1688</option>
+                          <option value="3">John52018</option>
+                          <option value="21">admin1234</option>
+                          <option value="22">usertest0</option>
+                          <option value="23">john520</option>
+                          <option value="24">copngao</option>
+                          <option value="25">Nhinlai12</option>
+                          <option value="26">ajie598</option>
+                          <option value="27">lyvanson1989</option>
+                          <option value="28">gaidep24h</option>
+                          <option value="29">ngumuoi</option>
+                          <option value="30">conga11</option>
+                          <option value="31">culonbay</option>
+                          <option value="32">ccc111</option>
+                          <option value="33">Conho11</option>
+                          <option value="35">Congafvhh</option>
+                          <option value="36">Hongloan86</option>
+                          <option value="37">Anhchoi</option>
+                          <option value="38">123456789</option>
+                          <option value="39">123456</option>
+                          <option value="40">033334444</option>
+                          <option value="41">0912666888</option>
+                          <option value="42">0789789789</option>
+                          <option value="43">0789789789</option>
+                          <option value="44">tieutu3111</option>
+                          <option value="45">154564</option>
+                          <option value="46">hieuvi</option>
+                          <option value="47">An1992</option>
+                          <option value="48">0377889900</option>
+                          <option value="49">0377889999</option>
+                          <option value="50">Tom8888</option>
+                          <option value="51">Mai123456</option>
+                          <option value="52">HaoCa28</option>
+                          <option value="53">Hungdung</option>
+                          <option value="55">anhhung01653</option>
+                          <option value="56">Lalala1123</option>
+                          <option value="57">Dat2002</option>
+                          <option value="58">Anhthang</option>
+                          <option value="59">Cuchuoi</option>
+                          <option value="61">Conmemay</option>
+                          <option value="62">0967677713</option>
+                          <option value="63">Yeuthoi</option>
+                          <option value="64">Beo118</option>
+                          <option value="65">Beo11898</option>
+                          <option value="66">044445555</option>
+                          <option value="67">cucacbay</option>
+                          <option value="68">cucacbay</option>
+                          <option value="69">123456a</option>
+                          <option value="70">anhchoino</option>
+                          <option value="71">gaidep24h4</option>
+                          <option value="72">conmeo332</option>
+                          <option value="73">3333331102</option>
+                          <option value="74">Kaka101089</option>
+                          <option value="75">Anhdayma</option>
+                          <option value="76">Huynguyen</option>
+                          <option value="77">abc1123</option>
+                          <option value="78">Tranmanh</option>
+                          <option value="79">0986903729</option>
+                          <option value="80">Chien1234</option>
+                          <option value="81">elon12341234</option>
+                          <option value="82">0977088830</option>
+                          <option value="83">CUONG</option>
+                          <option value="84">winter</option>
+                          <option value="85">Thinguyen19</option>
+                          <option value="86">Ductran</option>
+                          <option value="87">Dnhthuong</option>
+                          <option value="88">Hoanganh1234</option>
+                          <option value="89">Hoanganh123</option>
+                          <option value="90">YANZHIMIN</option>
+                          <option value="91">Ngyuenvanmau</option>
+                          <option value="92">Longlong</option>
+                          <option value="93">Kosoai33</option>
+                          <option value="94">xuanhao</option>
+                          <option value="95">phungbangoc</option>
+                          <option value="96">Dzcave</option>
+                          <option value="97">TheLiTheLi</option>
+                          <option value="98">to8thatvl</option>
+                          <option value="99">9797979797</option>
+                          <option value="100">Mr Hoang</option>
+                          <option value="101">Tran nguyen</option>
+                          <option value="102">Drift 2023!</option>
+                          <option value="103">0967839665</option>
+                          <option value="104">maychu</option>
+                          <option value="105">gia hung</option>
+                          <option value="106">khanhduy4392</option>
+                          <option value="107">dungpt.stg</option>
+                          <option value="108">Buithanhbinh</option>
+                          <option value="109">Luonvuotuoi</option>
+                          <option value="110">tienthanh</option>
+                          <option value="111">mathe1980</option>
+                          <option value="112">0979813471</option>
+                          <option value="113">Kennguyen</option>
+                          <option value="114">anhthang1</option>
+                          <option value="115">huyenhinh</option>
+                          <option value="116">Aly Mai</option>
+                          <option value="117">NgocNam</option>
+                          <option value="118">binh1986</option>
+                          <option value="119">Deptrai</option>
+                          <option value="120">Hoang Hai</option>
+                          <option value="121">Okbaby</option>
+                          <option value="122">Nhchien</option>
+                          <option value="123">Hungle</option>
+                          <option value="124">Sangnguyen</option>
+                          <option value="125">thanhtung</option>
+                          <option value="126">Nguyenvancu</option>
+                          <option value="127">Dlove1234</option>
+                          <option value="128">Max1990@1234</option>
+                          <option value="129">Datthuho</option>
+                          <option value="131">Alosoqn</option>
+                          <option value="132">Thuytnb451</option>
+                          <option value="133">0354389060</option>
+                          <option value="134">Tien0510</option>
+                          <option value="135">Trungkaka</option>
+                          <option value="136">DuongTruong</option>
+                          <option value="137">Trung236</option>
+                          <option value="138">hungpx</option>
+                          <option value="139">Bong cuu</option>
+                          <option value="140">NgHung</option>
+                          <option value="141">Test01</option>
+                          <option value="142">Ngoc Thien</option>
+                          <option value="143">Dungcohoitao</option>
+                          <option value="144">Quangque289</option>
+                          <option value="145">Cocainitnay</option>
+                          <option value="146">CHUNGTINH999</option>
+                          <option value="147">quocvy123</option>
+                          <option value="148">admin11</option>
+                          <option value="149">Hoanglong88</option>
+                          <option value="150">Luanvu</option>
+                          <option value="151">tri1989</option>
+                          <option value="152">phuongthao</option>
+                          <option value="153">trcuong</option>
+                          <option value="154">Duy Nam</option>
+                          <option value="155">Sagittarius</option>
+                          <option value="156">HaTuanLiem</option>
+                          <option value="157">Vuvanphuc</option>
+                          <option value="158">Nguyenkimhai</option>
+                          <option value="159">Le Xuan Bo</option>
+                          <option value="160">Lethethai</option>
+                          <option value="162">39hoanghuy39</option>
+                          <option value="163">Giangoctieu</option>
+                          <option value="164">123456987</option>
+                          <option value="165">HaoHao</option>
+                          <option value="166">Thu2468hp</option>
+                          <option value="167">Vantan</option>
+                          <option value="168">TranVietDung</option>
+                          <option value="169">@dai123</option>
+                          <option value="170">Cuong cuong</option>
+                          <option value="171">yakodo</option>
+                          <option value="172">MINH1984</option>
+                          <option value="173">Lehoangsy</option>
+                          <option value="175">68686t</option>
+                          <option value="176">Hoangpham123</option>
+                          <option value="177">Boynd19</option>
+                          <option value="178">Tuan098</option>
+                          <option value="179">VANTUAN36</option>
+                          <option value="180">Dinhvu</option>
+                          <option value="181">Vinh123</option>
+                          <option value="182">Huy6688</option>
+                          <option value="183">0984459446</option>
+                          <option value="184">thuyooc123</option>
+                          <option value="185">Namnguyem</option>
+                          <option value="186">0946631991</option>
+                          <option value="187">Thanhbinh</option>
+                          <option value="188">Toanphan123</option>
+                          <option value="189">Hien123</option>
+                          <option value="190">26november</option>
+                          <option value="191">hethong1</option>
+                          <option value="192">Jon1993</option>
+                          <option value="193">doitra</option>
+                          <option value="194">0967979578</option>
+                          <option value="195">phamdung</option>
+                          <option value="196">Thienduong</option>
+                          <option value="197">Truong1998</option>
+                          <option value="198">tester123</option>
+                          <option value="199">Minh dung 35</option>
+                          <option value="200">Newboock</option>
+                          <option value="201">nhatphuc</option>
+                          <option value="202">Chien251294</option>
+                          <option value="203">Hungho86</option>
+                          <option value="204">laocai</option>
+                          <option value="205">ADM8386</option>
+                          <option value="206">HelloKitty</option>
+                          <option value="207">Phamlong123</option>
+                          <option value="208">tex123</option>
+                          <option value="209">Manman123456</option>
+                          <option value="210">0989123789</option>
+                          <option value="211">0915511102</option>
+                          <option value="212">CHUNGTINH555</option>
+                          <option value="213">Cuchuoi379</option>
+                          <option value="214">Toan1994</option>
+                          <option value="215">banoitao</option>
+                          <option value="216">Minhminh</option>
+                          <option value="217">Kenhip</option>
+                          <option value="218">qwertyuiop</option>
+                          <option value="219">Lengoctuan</option>
+                          <option value="220">Leuleu</option>
+                          <option value="221">123khoqua</option>
+                          <option value="222">Ryohide</option>
+                          <option value="223">zaizai</option>
+                          <option value="224">TranDung</option>
+                          <option value="225">Hoang2410</option>
+                          <option value="226">Songbien123</option>
+                          <option value="227">Tienthuy</option>
+                          <option value="228">Thichthinhic</option>
+                          <option value="229">test123</option>
+                          <option value="230">LangNgon</option>
+                          <option value="231">hieung23</option>
+                          <option value="232">Volam2192964</option>
+                          <option value="233">cocolusoe</option>
+                          <option value="234">Quan minh</option>
+                          <option value="235">phongkho</option>
+                          <option value="236">nguyenvana</option>
+                          <option value="237">nhannhan123</option>
+                          <option value="238">Baby123456</option>
+                          <option value="239">anh123456</option>
+                          <option value="240">Macvantuyen</option>
+                          <option value="241">Baochilam07</option>
+                          <option value="242">Su Nguyen</option>
+                          <option value="243">Anh123</option>
+                          <option value="244">Huynh phuoc</option>
+                          <option value="245">Namvu96</option>
+                          <option value="246">anhthu2016</option>
+                          <option value="247">Hai@04121983</option>
+                          <option value="248">anhdaden</option>
+                          <option value="249">namkts36</option>
+                          <option value="251">0909888999</option>
+                          <option value="252">12345678</option>
+                          <option value="253">Hoangvankheu</option>
+                          <option value="254">Dangtuan87</option>
+                          <option value="255">Playdan123</option>
+                          <option value="256">Gaugau123</option>
+                          <option value="257">Phapem93</option>
+                          <option value="258">TranHieu2505</option>
+                          <option value="259">Duc1234</option>
+                          <option value="260">minhnhat</option>
+                          <option value="261">tubinhdinh1</option>
+                          <option value="262">tubinhdinh</option>
+                          <option value="263">Chaokimsai</option>
+                          <option value="264">Sung90</option>
+                          <option value="265">Huyrua</option>
+                          <option value="266">quangrau</option>
+                          <option value="267">Aa110213</option>
+                          <option value="268">aminliko</option>
+                          <option value="269">Amin121</option>
+                          <option value="270">admin11dfs</option>
+                          <option value="271">Md67890</option>
+                          <option value="272">Abcpppo</option>
+                          <option value="273">Ad234122</option>
+                          <option value="274">hora12</option>
+                          <option value="275">noioitoi</option>
+                          <option value="276">0903456789</option>
+                          <option value="277">md8888</option>
+                          <option value="278">Hhhhaaaa</option>
+                          <option value="279">Mediazmkt</option>
+                          <option value="280">muabangame</option>
+                          <option value="281">assssssss</option>
+                          <option value="282">bvp1105</option>
+                          <option value="283">Vanhai</option>
+                          <option value="284">Qwemaivan93</option>
+                          <option value="285">Thienba98</option>
+                          <option value="286">Dungchay88</option>
+                          <option value="287">Hipcoi98</option>
+                          <option value="288">Tuanhoan3</option>
+                          <option value="289">Quansonuyy</option>
+                          <option value="290">Tuyetlunnj</option>
+                          <option value="291">vtth3107</option>
+                          <option value="292">songoku</option>
+                          <option value="293">Haianh</option>
+                          <option value="294">diemthui</option>
+                          <option value="295">Tranvh</option>
+                          <option value="296">anhoinungvu</option>
+                          <option value="297">Quachmann</option>
+                          <option value="298">bvp9000</option>
+                          <option value="299">Trongninh</option>
+                          <option value="300">dinh hung</option>
+                          <option value="301">Nguyenlong</option>
+                          <option value="302">Nhatnam</option>
+                          <option value="303">Nhatnam1</option>
+                          <option value="304">Datban</option>
+                          <option value="305">Chienchu</option>
+                          <option value="306">Phamnam1</option>
+                          <option value="307">Tieupl</option>
+                          <option value="308">Tuyentoan</option>
+                          <option value="309">Tuancuog</option>
+                          <option value="310">Doiphieubac</option>
+                          <option value="311">Quantuu</option>
+                          <option value="312">Chungchung</option>
+                          <option value="313">Quangteu</option>
+                          <option value="314">Cuongngu</option>
+                          <option value="315">Hiepga</option>
+                          <option value="316">Nguuenbunh</option>
+                          <option value="317">Tientruong</option>
+                          <option value="318">Phuphong</option>
+                          <option value="319">Thamhbuiu</option>
+                          <option value="320">Vanhieu</option>
+                          <option value="321">vankiet145</option>
+                          <option value="322">Chungnghia</option>
+                          <option value="323">Trungtrung</option>
+                          <option value="324">Nambui</option>
+                          <option value="325">Nguyentien</option>
+                          <option value="326">Truongthe</option>
+                          <option value="327">Huydinh</option>
+                          <option value="328">Hunghoi</option>
+                          <option value="329">Trannho</option>
+                          <option value="330">Sonjgg</option>
+                          <option value="331">Tambinh</option>
+                          <option value="332">Duynhat</option>
+                          <option value="333">Vutrinh</option>
+                          <option value="334">Taitiai</option>
+                          <option value="335">Thienba</option>
+                          <option value="336">Duytoan</option>
+                          <option value="337">Ngosi78</option>
+                          <option value="338">Duykhuong</option>
+                          <option value="339">Hoanhvinh</option>
+                          <option value="340">Phamvantu</option>
+                          <option value="341">admin1123</option>
+                          <option value="342">transon15</option>
+                          <option value="343">transon156</option>
+                          <option value="344">Minh tuan</option>
+                          <option value="345">vankiet56</option>
+                          <option value="346">Nguyenthevu</option>
+                          <option value="347">Tung5499</option>
+                          <option value="348">Long9ngon</option>
+                          <option value="349">Huythu</option>
+                          <option value="350">Hoangle</option>
+                          <option value="351">Yeugaidep18</option>
+                          <option value="352">Doanvanto@</option>
+                          <option value="353">Trailv</option>
+                          <option value="354">alex123</option>
+                          <option value="355">ngovanvu</option>
+                          <option value="356">Dothanhtung</option>
+                          <option value="357">admin2222</option>
+                          <option value="358">huyc2020</option>
+                          <option value="359">Le khac dat</option>
+                          <option value="360">Lovanthang</option>
+                          <option value="361">Nhanzet79</option>
+                          <option value="362">PhamDuy</option>
+                          <option value="363">luongbinh</option>
+                          <option value="364">Phamhung15</option>
+                          <option value="365">Thuy alice</option>
+                          <option value="366">393159722</option>
+                          <option value="367">Changkho</option>
+                          <option value="368">Admin1997</option>
+                          <option value="369">Vuvu20112002</option>
+                          <option value="370">zackleo</option>
+                          <option value="371">Lumitrai</option>
+                          <option value="372">Tantan</option>
+                          <option value="373">cuong010705</option>
+                          <option value="374">Tuanzick</option>
+                          <option value="375">Hdiwkaj</option>
+                          <option value="376">Thaicuong97</option>
+                          <option value="377">Buitoan123@</option>
+                          <option value="378">taigino</option>
+                          <option value="379">Anhyeuem1</option>
+                          <option value="380">Lamvanet69</option>
+                          <option value="381">Truong</option>
+                          <option value="382">Hunghung9</option>
+                          <option value="383">boicutiis1</option>
+                          <option value="384">Thachle97</option>
+                          <option value="385">Thach1102</option>
+                          <option value="386">thang2402</option>
+                          <option value="387">Huuan123</option>
+                          <option value="388">Lovesec114</option>
+                          <option value="389">Thien1611</option>
+                          <option value="390">Nghiacutekkk</option>
+                          <option value="391">PHUNGVIET</option>
+                          <option value="392">Tai59145</option>
+                          <option value="393">Quoc2000</option>
+                          <option value="394">Van y</option>
+                          <option value="395">Vunguyen</option>
+                          <option value="396">Trong nghia</option>
+                          <option value="397">Ntdtung</option>
+                          <option value="398">Thanhphu</option>
+                          <option value="399">Kpa Minh</option>
+                          <option value="400">Cuong12345</option>
+                          <option value="401">shingu</option>
+                          <option value="402">Hoang koko</option>
+                          <option value="403">Phuc Nguyen</option>
+                          <option value="404">Tauhu98</option>
+                          <option value="405">Hung123456</option>
+                          <option value="406">Hoabinh28</option>
+                          <option value="407">Caohainam</option>
+                          <option value="408">Yaggjav2884</option>
+                          <option value="409">Ouantoan4720</option>
+                          <option value="410">09639573644</option>
+                          <option value="411">Lenhathao</option>
+                          <option value="412">admin12</option>
+                          <option value="413">sang123456</option>
+                          <option value="414">hung764119</option>
+                          <option value="415">Sonle12</option>
+                          <option value="416">Levantam</option>
+                          <option value="417">Oooooo</option>
+                          <option value="418">Asdls2011</option>
+                          <option value="419">Hale134</option>
+                          <option value="420">Quanghung</option>
+                          <option value="421">Tien dat</option>
+                          <option value="422">Nguyen nhi</option>
+                          <option value="423">Hoanghuy</option>
+                          <option value="424">Trungtuli</option>
+                          <option value="425">Thanhnam</option>
+                          <option value="426">Quocminh2109</option>
+                          <option value="427">hihi12</option>
+                          <option value="428">Quocle</option>
+                          <option value="429">Caothuy</option>
+                          <option value="430">Pain12</option>
+                          <option value="431">Baobao</option>
+                          <option value="432">Bao Nam</option>
+                          <option value="433">Hungnguyen</option>
+                          <option value="434">tuanhung2</option>
+                          <option value="435">sususu</option>
+                          <option value="437">Trieuvy102</option>
+                          <option value="438">Thoai10</option>
+                          <option value="439">chi cong</option>
+                          <option value="440">Halong</option>
+                          <option value="441">Tran bao an</option>
+                          <option value="442">Dodo123456</option>
+                          <option value="443">lealikha</option>
+                          <option value="444">Long555555</option>
+                          <option value="445">Nguyen minh</option>
+                          <option value="446">Cu1234</option>
+                          <option value="447">vangathe</option>
+                          <option value="448">gaplaxuc123</option>
+                          <option value="449">Nguyen an</option>
+                          <option value="450">Nguyenchien</option>
+                          <option value="451">Taikull</option>
+                          <option value="452">caohainam22</option>
+                          <option value="453">Tuan Thanh</option>
+                          <option value="454">Hoang1234</option>
+                          <option value="455">Gaigoi</option>
+                          <option value="456">xuanquang22</option>
+                          <option value="457">0865241163</option>
+                          <option value="458">Ankhang</option>
+                          <option value="459">Thanh trung</option>
+                          <option value="460">Phong26903</option>
+                          <option value="461">Truong091299</option>
+                          <option value="462">Hovanduyen</option>
+                          <option value="463">toanpham12</option>
+                          <option value="464">Long thien</option>
+                          <option value="465">tuanvip1111</option>
+                          <option value="466">Tuanvip11111</option>
+                          <option value="467">Nhantruong</option>
+                          <option value="468">Lang thang</option>
+                          <option value="469">Truong@123</option>
+                          <option value="470">Nghia123</option>
+                          <option value="471">adminadmin</option>
+                          <option value="472">Baoolong</option>
+                          <option value="473">678910</option>
+                          <option value="474">Anhvip4</option>
+                          <option value="475">chauson</option>
+                          <option value="476">Nguyenminh</option>
+                          <option value="477">Namnhok99</option>
+                          <option value="478">Mt301002</option>
+                          <option value="479">Phonglek123</option>
+                          <option value="480">anhhung</option>
+                          <option value="481">noioitoi33</option>
+                          <option value="482">anhtoan88</option>
+                          <option value="483">Lamchankhai</option>
+                          <option value="484">Tungchua25</option>
+                          <option value="485">Nguyendacdai</option>
+                          <option value="486">Nguyendacda</option>
+                          <option value="487">Hoaitoi</option>
+                          <option value="488">bumber1996</option>
+                          <option value="489">Vinhcubu</option>
+                          <option value="490">Quyhip32</option>
+                          <option value="491">mrtuankg10</option>
+                          <option value="492">Abclove</option>
+                          <option value="493">hauamphu19</option>
+                          <option value="494">Tk1992</option>
+                          <option value="495">Anmilo2706</option>
+                          <option value="496">Cuong cao</option>
+                          <option value="497">Tran toan 79</option>
+                          <option value="498">Trieucodon</option>
+                          <option value="499">Ydzhaha1</option>
+                          <option value="500">Yeuemlam</option>
+                          <option value="501">Phongne</option>
+                          <option value="502">Cuathao</option>
+                          <option value="503">MrHung</option>
+                          <option value="504">trangialinh</option>
+                          <option value="505">Nghia1996</option>
+                          <option value="506">Dat2020</option>
+                          <option value="507">Hoangbom97</option>
+                          <option value="508">Tranvandung</option>
+                          <option value="509">tranduyhau</option>
+                          <option value="510">Congnhi</option>
+                          <option value="511">Mando 1997</option>
+                          <option value="512">Nguyenhuuduc</option>
+                          <option value="513">Tuan05</option>
+                          <option value="514">Hiepnguyen</option>
+                          <option value="515">0981027079</option>
+                          <option value="516">Dinh Duc vy</option>
+                          <option value="517">duc vy</option>
+                          <option value="518">Quoc quy</option>
+                          <option value="519">Nguyenphong</option>
+                          <option value="520">Tanhuy</option>
+                          <option value="521">Hiep1997</option>
+                          <option value="522">Ly123456</option>
+                          <option value="523">Khoongcamxuc</option>
+                          <option value="524">Khanh12</option>
+                          <option value="525">Khanhduy</option>
+                          <option value="526">dachai1</option>
+                          <option value="527">MinhPhuong</option>
+                          <option value="528">cam6677</option>
+                          <option value="529">Vominhhuy</option>
+                          <option value="530">Betho0011</option>
+                          <option value="531">thanhtam003</option>
+                          <option value="532">Phanhung</option>
+                          <option value="533">Nguyentandat</option>
+                          <option value="534">Duyamon</option>
+                          <option value="535">aska1102</option>
+                          <option value="536">Nam NV</option>
+                          <option value="537">Caovandat</option>
+                          <option value="538">chingoan</option>
+                          <option value="539">Tokuda2024</option>
+                          <option value="540">Violet</option>
+                          <option value="541">Pham vu tin</option>
+                          <option value="542">364828329</option>
+                          <option value="543">Vutran123</option>
+                          <option value="544">Adminsonla</option>
+                          <option value="545">0394901902</option>
+                          <option value="546">alishtrairl</option>
+                          <option value="547">Anh hai</option>
+                          <option value="548">Tranvanphap</option>
+                          <option value="549">congdai12</option>
+                          <option value="550">phamhau</option>
+                          <option value="551">Guynai</option>
+                          <option value="552">huutrong</option>
+                          <option value="553">binhkhuong</option>
+                          <option value="554">Tranvanday</option>
+                          <option value="555">Tranday</option>
+                          <option value="556">Cuong198</option>
+                          <option value="557">phuongnamhx</option>
+                          <option value="558">Abcde12345</option>
+                          <option value="559">130298</option>
+                          <option value="560">giabao</option>
+                          <option value="561">Aveirohung</option>
+                          <option value="562">Quoc viet</option>
+                          <option value="563">Quanlu2002</option>
+                          <option value="564">Tuan1243</option>
+                          <option value="565">Tuannguyen</option>
+                          <option value="566">Admin</option>
+                          <option value="567">lioko12345</option>
+                          <option value="568">Cuchanh123</option>
+                          <option value="569">Minhtuanbrvt</option>
+                          <option value="570">Nghinghi</option>
+                          <option value="571">NguyCaothuy</option>
+                          <option value="572">admin222222</option>
+                          <option value="573">Phuong99</option>
+                          <option value="574">ku chim</option>
+                          <option value="575">Hanlap</option>
+                          <option value="576">Truongque</option>
+                          <option value="577">giang4321</option>
+                          <option value="578">Lethethanh</option>
+                          <option value="579">Quangtom002</option>
+                          <option value="580">Vo xuan hung</option>
+                          <option value="581">Toan3g</option>
+                          <option value="582">Nhan123</option>
+                          <option value="583">Kpa y Gia</option>
+                          <option value="584">ThaiHoang</option>
+                          <option value="585">Pomen79</option>
+                          <option value="586">anmap1995k</option>
+                          <option value="587">fhqjxm3</option>
+                          <option value="588">jiwon kim</option>
+                          <option value="589">Van long</option>
+                          <option value="590">Linh9x</option>
+                          <option value="591">Lequocvuong</option>
+                          <option value="592">Vangiang</option>
+                          <option value="593">Gdd do jn</option>
+                          <option value="594">Trantran1820</option>
+                          <option value="595">admin123</option>
+                          <option value="596">kimjongdae</option>
+                          <option value="597">Tinh0101</option>
+                          <option value="598">Phongcacdep</option>
+                          <option value="599">Trieuhai2k2</option>
+                          <option value="600">User12</option>
+                          <option value="601">Khanhtreok</option>
+                          <option value="602">Quang l</option>
+                          <option value="603">0907773772</option>
+                          <option value="604">Bin6789</option>
+                          <option value="605">0962731076</option>
+                          <option value="606">Trangiahuy1</option>
+                          <option value="607">Boyboy1993</option>
+                          <option value="608">Tan duy</option>
+                          <option value="609">Vinh1999</option>
+                          <option value="610">quoctien12</option>
+                          <option value="611">Duonggiadoan</option>
+                          <option value="612">Phat dat @@</option>
+                          <option value="613">qqqqqqqqqq</option>
+                          <option value="614">Phamtuan90</option>
+                          <option value="615">Thang789</option>
+                          <option value="616">Thanh98</option>
+                          <option value="617">Cunsin031</option>
+                          <option value="618">Haidang</option>
+                          <option value="619">Huypa8</option>
+                          <option value="620">HoangDat</option>
+                          <option value="621">huyne123</option>
+                          <option value="622">Anhluan</option>
+                          <option value="623">Coicut</option>
+                          <option value="624">tunku012</option>
+                          <option value="625">Bsy son</option>
+                          <option value="626">Hihiho</option>
+                          <option value="627">Ngoc12345</option>
+                          <option value="628">Tunglinh</option>
+                          <option value="629">Khai123</option>
+                          <option value="630">Vandat0106</option>
+                          <option value="631">Toi123</option>
+                          <option value="632">San1423211</option>
+                          <option value="633">Hau123</option>
+                          <option value="634">Kubin1995</option>
+                          <option value="635">1234bg</option>
+                          <option value="636">Hak812</option>
+                          <option value="637">truongan6868</option>
+                          <option value="638">aiai12345</option>
+                          <option value="639">Chunghoangha</option>
+                          <option value="640">longca123</option>
+                          <option value="641">Mrdemen</option>
+                          <option value="642">nguyen hai</option>
+                          <option value="643">Thanh2211</option>
+                          <option value="644">Nguyen1234</option>
+                          <option value="645">yeulam222</option>
+                          <option value="646">Hong123</option>
+                          <option value="647">Teo123</option>
+                          <option value="648">Ngothanh</option>
+                          <option value="649">Haioi0375</option>
+                          <option value="650">panda176</option>
+                          <option value="651">Qqiwiwieuheh</option>
+                          <option value="652">Dinh122119</option>
+                          <option value="653">longtong</option>
+                          <option value="654">Phamminhtan</option>
+                          <option value="655">Quangha</option>
+                          <option value="656">Nihon6868</option>
+                          <option value="657">Tranthieu</option>
+                          <option value="658">Khongten</option>
+                          <option value="659">ly gia Phat</option>
+                          <option value="660">Hieu22133</option>
+                          <option value="661">Minhtam3003</option>
+                          <option value="662">Voquochuy</option>
+                          <option value="663">123456789n</option>
+                          <option value="664">Hvuluan1999</option>
+                          <option value="665">Huybapcai21</option>
+                          <option value="666">Vukha11</option>
+                          <option value="667">viet12345678</option>
+                          <option value="668">Nguyen</option>
+                          <option value="669">Tuannguyen68</option>
+                          <option value="670">Huyhoan12</option>
+                          <option value="671">ahuyfc</option>
+                          <option value="672">ntvu0595</option>
+                          <option value="673">Nam jp</option>
+                          <option value="674">Tuankl113</option>
+                          <option value="675">Khanhhuynh</option>
+                          <option value="676">Huong000</option>
+                          <option value="677">Quyphan</option>
+                          <option value="678">anhbet11</option>
+                          <option value="679">Thanhluyen</option>
+                          <option value="680">Thieulaogia</option>
+                          <option value="681">Nvllap87</option>
+                          <option value="682">Cuonghp1000</option>
+                          <option value="683">Nguyentr2510</option>
+                          <option value="684">Hoangvt1011</option>
+                          <option value="685">Duynguyen</option>
+                          <option value="686">duytung123</option>
+                          <option value="687">Tuan 123</option>
+                          <option value="688">Trinhquocdai</option>
+                          <option value="689">Honghuy</option>
+                          <option value="690">Dinhtuan2000</option>
+                          <option value="691">hehe999</option>
+                          <option value="692">trannam12</option>
+                          <option value="693">ngubome</option>
+                          <option value="694">gaivip1</option>
+                          <option value="695">fydfhyr</option>
+                          <option value="696">hehe888</option>
+                          <option value="697">thangt8111</option>
+                          <option value="698">686969</option>
+                          <option value="699">0903666999</option>
+                          <option value="700">hehe777</option>
+                          <option value="701">trungquoc</option>
+                          <option value="702">Ducle719</option>
+                          <option value="703">eiko797</option>
+                          <option value="704">Mr.tee</option>
+                          <option value="705">longphan11</option>
+                          <option value="706">Thanhlap</option>
+                          <option value="707">Minhgiang</option>
+                          <option value="708">Beo1234@</option>
+                          <option value="709">Tinhhh</option>
+                          <option value="710">Minhluan</option>
+                          <option value="711">Tuanht</option>
+                          <option value="712">Giangson</option>
+                          <option value="713">Vuca290696</option>
+                          <option value="714">Anhlam15</option>
+                          <option value="715">Hau6789</option>
+                          <option value="716">Dinh123456</option>
+                          <option value="717">Lisa12</option>
+                          <option value="718">Omarvn</option>
+                          <option value="719">Quang Huy</option>
+                          <option value="720">Ngothanhvan</option>
+                          <option value="721">tycabin</option>
+                          <option value="722">Thanhgl</option>
+                          <option value="723">Nampham0112</option>
+                          <option value="724">Thang290</option>
+                          <option value="725">Tiengl81</option>
+                          <option value="726">khuy134</option>
+                          <option value="727">yeulasai123</option>
+                          <option value="728">Tidaugau</option>
+                          <option value="729">ChungDen</option>
+                          <option value="730">hoangvu6869</option>
+                          <option value="731">Tunglevan</option>
+                          <option value="732">Phong123</option>
+                          <option value="733">Dinhcuong</option>
+                          <option value="734">Okjekxhia</option>
+                          <option value="735">hoangkien14</option>
+                          <option value="736">Congaivip</option>
+                          <option value="737">0373605760</option>
+                          <option value="738">Thanhthanh</option>
+                          <option value="739">cuongmap</option>
+                          <option value="740">CookkieQA</option>
+                          <option value="741">trannam</option>
+                          <option value="742">huongdan</option>
+                          <option value="743">ThaiChau</option>
+                          <option value="744">bruno6688</option>
+                          <option value="745">Manh6300</option>
+                          <option value="746">Longka</option>
+                          <option value="747">Tuyen1234</option>
+                          <option value="748">hoangtuan378</option>
+                          <option value="749">Su12344</option>
+                          <option value="750">hieuvip</option>
+                          <option value="751">Adminvip</option>
+                          <option value="752">Hieu102</option>
+                          <option value="753">hoaphuong</option>
+                          <option value="754">Vanduc01</option>
+                          <option value="755">Ngonam</option>
+                          <option value="756">thanhtrung</option>
+                          <option value="757">tuongtuong</option>
+                          <option value="758">diepminh</option>
+                          <option value="759">nghiale</option>
+                          <option value="760">taitai</option>
+                          <option value="761">Ngocluong</option>
+                          <option value="762">Hoanguyen</option>
+                          <option value="763">thaikhacty</option>
+                          <option value="764">Thanhhai777</option>
+                          <option value="765">Dotienanh</option>
+                          <option value="766">Hieu22</option>
+                          <option value="767">Hoangluong</option>
+                          <option value="768">Nthh1202</option>
+                          <option value="769">Dat1692</option>
+                          <option value="770">tranthephong</option>
+                          <option value="771">thanhquyen</option>
+                          <option value="772">Trungquoc2</option>
+                          <option value="773">longtran</option>
+                          <option value="774">mrcodon</option>
+                          <option value="775">haynguyen</option>
+                          <option value="776">anle11</option>
+                          <option value="777">Khang79</option>
+                          <option value="778">manhzxc</option>
+                          <option value="779">Lanthan</option>
+                          <option value="780">Zelusplus</option>
+                          <option value="781">Boycute</option>
+                          <option value="782">sgdgsgfdg</option>
+                          <option value="783">Huynhhien</option>
+                          <option value="784">Beodeptrai1</option>
+                          <option value="785">Thang1912</option>
+                          <option value="786">AnTN8842</option>
+                          <option value="787">Trong minh</option>
+                          <option value="788">Van cuong</option>
+                          <option value="789">trungcuto</option>
+                          <option value="790">Phanvancuong</option>
+                          <option value="791">Toilaia</option>
+                          <option value="792">hoangdang</option>
+                          <option value="793">Toilaai</option>
+                          <option value="794">thaiduong</option>
+                          <option value="795">Thanhtran</option>
+                          <option value="796">mauchoigai</option>
+                          <option value="797">Thaithuat</option>
+                          <option value="798">nguyentrung</option>
+                          <option value="799">bibibi</option>
+                          <option value="800">Longvu1991</option>
+                          <option value="801">Khongtentuoi</option>
+                          <option value="802">huy123</option>
+                          <option value="803">trongphuc</option>
+                          <option value="804">Mduc8595</option>
+                          <option value="805">cauutcauut</option>
+                          <option value="806">Khanh1991</option>
+                          <option value="807">0374065482</option>
+                          <option value="808">lanh77</option>
+                          <option value="809">laodai</option>
+                          <option value="810">hoangtu</option>
+                          <option value="811">Tommybadboy@</option>
+                          <option value="812">Bubu123</option>
+                          <option value="813">123124</option>
+                          <option value="814">Anhvanvan</option>
+                          <option value="815">Vu huy</option>
+                          <option value="816">natra123</option>
+                          <option value="817">Minmin999</option>
+                          <option value="818">natraa123</option>
+                          <option value="819">alo122</option>
+                          <option value="820">test555</option>
+                          <option value="821">Nam123</option>
+                          <option value="822">minh1208</option>
+                          <option value="823">abc123</option>
+                          <option value="824">taikhoantest</option>
+                          <option value="825">hhh1234</option>
+                          <option value="826">khanh123456</option>
+                          <option value="827">aaa123123</option>
+                          <option value="828">alo123</option>
+                          <option value="830">gachaybo</option>
+                          <option value="831">amei81203</option>
+                          <option value="832">ahe123</option>
+                          <option value="833">quanvu</option>
+                          <option value="834">test1235</option>
+                          <option value="835">test666</option>
+                          <option value="836">nhapngusi</option>
+                          <option value="837">eiko9988</option>
+                          <option value="838">eiko9977</option>
+                          <option value="839">chaoday123</option>
+                          <option value="841">Long123</option>
+                          <option value="843">Bum123</option>
+                          <option value="844">afeng113</option>
+                          <option value="845">sonduy</option>
+                          <option value="846">hung123</option>
+                          <option value="847">liulian</option>
+                          <option value="848">liulian123</option>
+                          <option value="849">Kha123</option>
+                          <option value="850">Tung92</option>
+                          <option value="851">aiosaika</option>
+                          <option value="852">Thanh123</option>
+                          <option value="853">Ga12345</option>
+                          <option value="854">dong123</option>
+                          <option value="855">huy1308</option>
+                          <option value="856">Thoa1308</option>
+                          <option value="857">cuong123</option>
+                          <option value="858">thuan1308</option>
+                          <option value="859">phong1308</option>
+                          <option value="860">coca297</option>
+                          <option value="861">nam1308</option>
+                          <option value="862">test1236</option>
+                          <option value="863">vukaka</option>
+                          <option value="864">tin1308</option>
+                          <option value="865">hung1408</option>
+                          <option value="866">nam1408</option>
+                          <option value="867">trongtri32</option>
+                          <option value="868">hoa123</option>
+                          <option value="869">nguyen1408</option>
+                          <option value="870">ahung1408</option>
+                          <option value="871">dai1408</option>
+                          <option value="872">ha1408</option>
+                          <option value="873">huy1234</option>
+                          <option value="874">TheHuy999</option>
+                          <option value="875">dat1408</option>
+                          <option value="876">trung123</option>
+                          <option value="877">thai1408</option>
+                          <option value="881">hung1508</option>
+                          <option value="882">van1508</option>
+                          <option value="883">ghi1508</option>
+                          <option value="884">thang123</option>
+                          <option value="885">Trung158</option>
+                          <option value="886">nam1995</option>
+                          <option value="887">xinh32</option>
+                          <option value="888">lequynh</option>
+                          <option value="889">trungtran</option>
+                          <option value="890">vu1508</option>
+                          <option value="891">hao1508</option>
+                          <option value="892">huy158</option>
+                          <option value="893">thien1508</option>
+                          <option value="894">thom1508</option>
+                          <option value="895">duong123</option>
+                          <option value="896">han1508</option>
+                          <option value="897">Lam222</option>
+                          <option value="898">tung1508</option>
+                          <option value="899">Helo123</option>
+                          <option value="900">minh1508</option>
+                          <option value="901">nhut1508</option>
+                          <option value="902">hieucoi123</option>
+                          <option value="903">tuan1608</option>
+                          <option value="904">hung1608</option>
+                          <option value="905">quan32</option>
+                          <option value="906">Hong168</option>
+                          <option value="907">huutri123</option>
+                          <option value="908">ngoc1608</option>
+                          <option value="909">Thai123</option>
+                          <option value="910">Meo123</option>
+                          <option value="911">Nganbya</option>
+                          <option value="912">an1608</option>
+                          <option value="913">quynh1608</option>
+                          <option value="914">Ancao2k</option>
+                          <option value="915">linh123</option>
+                          <option value="916">Hoang123</option>
+                          <option value="917">nghia1234</option>
+                          <option value="918">Nghia1235</option>
+                          <option value="919">thanh1608</option>
+                          <option value="920">quyet158</option>
+                          <option value="921">Dang123</option>
+                          <option value="922">hoa1608</option>
+                          <option value="923">athanh1608</option>
+                          <option value="924">chichi1608</option>
+                          <option value="925">hoang1608</option>
+                          <option value="926">Tung123</option>
+                          <option value="927">Duong168</option>
+                          <option value="928">hoanghai</option>
+                          <option value="929">Yui123</option>
+                          <option value="930">Nam176</option>
+                          <option value="931">Huy1708</option>
+                          <option value="932">binh1708</option>
+                          <option value="933">tuan1708</option>
+                          <option value="934">thien1708</option>
+                          <option value="935">hai178</option>
+                          <option value="936">Bear1708</option>
+                          <option value="937">Duy2512</option>
+                          <option value="939">tan1708</option>
+                          <option value="940">quoctuan1708</option>
+                          <option value="941">manhhai</option>
+                          <option value="942">quang1708</option>
+                          <option value="943">hai1708</option>
+                          <option value="944">quan123</option>
+                          <option value="945">cuong1234</option>
+                          <option value="946">bao123</option>
+                          <option value="947">hong1234</option>
+                          <option value="948">chantran1808</option>
+                          <option value="949">duc123</option>
+                          <option value="950">trung1808</option>
+                          <option value="951">nam1808</option>
+                          <option value="952">linh1808</option>
+                          <option value="953">vinh1808</option>
+                          <option value="954">an1808</option>
+                          <option value="955">tri1808</option>
+                          <option value="956">hanh1908</option>
+                          <option value="957">nong1908</option>
+                          <option value="958">Tin1908</option>
+                          <option value="959">khang1909</option>
+                          <option value="960">Huy100</option>
+                          <option value="961">vinh010</option>
+                          <option value="962">Vietanh123</option>
+                          <option value="963">truc198</option>
+                          <option value="964">Thong1908</option>
+                          <option value="965">nam1908</option>
+                          <option value="966">luc1908</option>
+                          <option value="967">dung198</option>
+                          <option value="968">Dat123</option>
+                          <option value="969">Hau100</option>
+                          <option value="970">hanquoc</option>
+                          <option value="971">duyphuong</option>
+                          <option value="972">nam2008</option>
+                          <option value="973">Cu12345</option>
+                          <option value="974">Hien1234</option>
+                          <option value="975">dong2008</option>
+                          <option value="976">thanh2008</option>
+                          <option value="977">hung2008</option>
+                          <option value="978">son1908</option>
+                          <option value="979">sang123</option>
+                          <option value="980">Nguyen123</option>
+                          <option value="981">quoc208</option>
+                          <option value="982">tu2008</option>
+                          <option value="983">ton2008</option>
+                          <option value="984">thinh2008</option>
+                          <option value="985">khoa208</option>
+                          <option value="986">Gaconlacme</option>
+                          <option value="987">luan123</option>
+                          <option value="988">hoang2008</option>
+                          <option value="989">tien208</option>
+                          <option value="990">duong2008</option>
+                          <option value="991">tuyen2008</option>
+                          <option value="992">phong2008</option>
+                          <option value="994">hungaa123</option>
+                          <option value="995">linh113</option>
+                          <option value="996">quyen208</option>
+                          <option value="997">quyen2008</option>
+                          <option value="998">Duc12345</option>
+                          <option value="999">anhtai208</option>
+                          <option value="1000">anhdat208</option>
+                          <option value="1001">tuan2008</option>
+                          <option value="1002">thien2008</option>
+                          <option value="1003">thanh tuan</option>
+                          <option value="1004">tom103</option>
+                          <option value="1005">vinh2108</option>
+                          <option value="1006">phong2108</option>
+                          <option value="1007">thuong2108</option>
+                          <option value="1008">The 112</option>
+                          <option value="1009">phongnho</option>
+                          <option value="1010">tung2108</option>
+                          <option value="1011">Nghia2108</option>
+                          <option value="1012">tuan2108</option>
+                          <option value="1013">Khanh2108</option>
+                          <option value="1014">anh1234</option>
+                          <option value="1015">Hoan123</option>
+                          <option value="1016">Nam2108</option>
+                          <option value="1017">hung2108</option>
+                          <option value="1018">thanh2108</option>
+                          <option value="1019">thanh218</option>
+                          <option value="1020">Hau2108</option>
+                          <option value="1021">thang2108</option>
+                          <option value="1022">long2108</option>
+                          <option value="1023">Nam 2108</option>
+                          <option value="1024">Nam beo</option>
+                          <option value="1025">truong228</option>
+                          <option value="1026">vu2308</option>
+                          <option value="1027">Nam2208</option>
+                          <option value="1028">achau228</option>
+                          <option value="1029">kiet2208</option>
+                          <option value="1030">linh2208</option>
+                          <option value="1031">tam2208</option>
+                          <option value="1032">hoi2208</option>
+                          <option value="1033">hai2208</option>
+                          <option value="1034">phuoc228</option>
+                          <option value="1035">vuthien2308</option>
+                          <option value="1036">kien228</option>
+                          <option value="1037">Viet2208</option>
+                          <option value="1038">van2208</option>
+                          <option value="1039">tham123</option>
+                          <option value="1040">long228</option>
+                          <option value="1041">khanh123</option>
+                          <option value="1042">cuong2208</option>
+                          <option value="1043">Nguyen2208</option>
+                          <option value="1044">anhtu228</option>
+                          <option value="1045">hai228</option>
+                          <option value="1046">phuoc123</option>
+                          <option value="1047">khanh238</option>
+                          <option value="1048">hieu2308</option>
+                          <option value="1049">dung238</option>
+                          <option value="1050">vu1234</option>
+                          <option value="1051">canh123</option>
+                          <option value="1052">lung238</option>
+                          <option value="1053">linh69</option>
+                          <option value="1054">anhlam238</option>
+                          <option value="1055">vinh238</option>
+                          <option value="1056">ngoc123</option>
+                          <option value="1057">khang2308</option>
+                          <option value="1058">phihung123</option>
+                          <option value="1059">phong1234</option>
+                          <option value="1060">Phung2308</option>
+                          <option value="1061">bang123</option>
+                          <option value="1062">Thanh2308</option>
+                          <option value="1063">sang2308</option>
+                          <option value="1065">tynho2308</option>
+                          <option value="1067">vinh2508</option>
+                          <option value="1068">Ku2408</option>
+                          <option value="1069">mau2508</option>
+                          <option value="1070">tuan2408</option>
+                          <option value="1071">tuan248</option>
+                          <option value="1072">tanduy88</option>
+                          <option value="1073">duc2408</option>
+                          <option value="1074">nui2408</option>
+                          <option value="1075">anhdai248</option>
+                          <option value="1076">khang2408</option>
+                          <option value="1077">nhan2408</option>
+                          <option value="1078">trinh2408</option>
+                          <option value="1080">minh2408</option>
+                          <option value="1081">duan123</option>
+                          <option value="1082">tan2508</option>
+                          <option value="1083">hoan2508</option>
+                          <option value="1084">Kkkoooo</option>
+                          <option value="1085">DuyAnh1230</option>
+                          <option value="1086">huule123</option>
+                          <option value="1087">cocalmao123</option>
+                          <option value="1088">quang123</option>
+                          <option value="1089">thanh2508</option>
+                          <option value="1090">Tu2508</option>
+                          <option value="1091">thanh0077</option>
+                          <option value="1092">bien2508</option>
+                          <option value="1093">lythanh2508</option>
+                          <option value="1094">bien24790</option>
+                          <option value="1096">hai2508</option>
+                          <option value="1097">vansy123</option>
+                          <option value="1098">test555666</option>
+                          <option value="1099">duy2508</option>
+                          <option value="1100">hung2508</option>
+                          <option value="1101">thong2508</option>
+                          <option value="1102">yeu2608</option>
+                          <option value="1103">linhduy88</option>
+                          <option value="1104">thang2608</option>
+                          <option value="1105">huy2608</option>
+                          <option value="1106">tam2608</option>
+                          <option value="1107">Aktung</option>
+                          <option value="1108">trong123</option>
+                          <option value="1109">hong2608</option>
+                          <option value="1110">sang2608</option>
+                          <option value="1111">thong2608</option>
+                          <option value="1112">hung268</option>
+                          <option value="1113">tung1234</option>
+                          <option value="1114">khanh2608</option>
+                          <option value="1115">tam123</option>
+                          <option value="1116">binh123</option>
+                          <option value="1117">Truc2608</option>
+                          <option value="1118">Quyet2608</option>
+                          <option value="1119">truong2608</option>
+                          <option value="1120">huy2708</option>
+                          <option value="1121">chin2708</option>
+                          <option value="1122">hung2708</option>
+                          <option value="1123">chi2708</option>
+                          <option value="1124">du2708</option>
+                          <option value="1125">than123</option>
+                          <option value="1126">tuan2708</option>
+                          <option value="1127">milo2708</option>
+                          <option value="1128">thanh278</option>
+                          <option value="1129">thanh888</option>
+                          <option value="1130">ducden2708</option>
+                          <option value="1131">son2708</option>
+                          <option value="1132">loc278</option>
+                          <option value="1133">trieu2708</option>
+                          <option value="1134">loc2708</option>
+                          <option value="1135">truong2708</option>
+                          <option value="1136">tuan123</option>
+                          <option value="1137">Nhan2708</option>
+                          <option value="1138">Trinh2708</option>
+                          <option value="1139">adminn1</option>
+                          <option value="1140">taybaybe123</option>
+                          <option value="1141">tam2708</option>
+                          <option value="1142">Quy2708</option>
+                          <option value="1143">dang2708</option>
+                          <option value="1144">bun2708</option>
+                          <option value="1145">thao2708</option>
+                          <option value="1146">Minh2806</option>
+                          <option value="1147">an2708</option>
+                          <option value="1148">trung278</option>
+                          <option value="1149">quan1234</option>
+                          <option value="1150">quang2808</option>
+                          <option value="1151">ku1234</option>
+                          <option value="1152">tuan2808</option>
+                          <option value="1153">Tuan1983@</option>
+                        </select>
+                        {% elif type == 'edit' %} {{ form.username }} {% endif %}
+                      </div>
+
+                      <div class="form-group">
+                        <label> Tên chủ tài khoản </label>
+                        {{ form.name }}
+                      </div>
+
+                      <div class="form-group">
+                        <label> Số tài khoản </label>
+                        {{ form.bankid }}
+                      </div>
+                      <div class="form-group">
+                        <label> Ngân hàng </label>
+                        {{ form.bankinfo }}
+                      </div>
+                      <div class="form-group">
+                        <button class="layui-btn" lay-filter="save" lay-submit type="button">{% if type == 'add' %} Thêm {% elif type == 'edit' %} Cập nhật {% endif %}</button>
+                      </div>
+                    </form>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </main>
+      </div>
+    </div>
+    <script src="{% static 'js/jquery.min.js' %}"></script>
+    <script src="{% static 'js/bootstrap.min.js' %}"></script>
+    <script src="{% static 'js/perfect-scrollbar.min.js' %}"></script>
+    <script src="{% static 'js/layui.js' %}"></script>
+  </body>
+</html>
+<script>
+  layui.use(["form"], function () {
+    var layer = layui.layer,
+      form = layui.form;
+
+    form.on("submit(save)", function (data) {
+      var bankinfo = $("#bankinfo").val();
+      var uid = $("#uid").val();
+      var bankid = $("#bankid").val();
+      if (bankinfo == "" || bankinfo == null || bankinfo == undefined) {
+        layer.msg("Vui lòng nhập ngân hàng");
+        return false;
+      }
+      if (uid == "" || uid == null || uid == undefined) {
+        layer.msg("Vui lòng chọn Người dùng");
+        return false;
+      }
+      if (bankid == "" || bankid == null || bankid == undefined) {
+        layer.msg("Vui lòng chọn Người dùng");
+        return false;
+      }
+      var loading = layer.load(0, { shade: false });
+      $.ajax({
+        type: "post",
+        url: "/bank/dosave",
+        data: $("#loginfrom").serialize(),
+        dataType: "json",
+        success: function (data) {
+          if (data.code === 200) {
+            layer.msg(
+              data.msg,
+              {
+                icon: 1,
+                time: 1500, //2 giây đóng (nếu không cấu hình, mặc định là 3 giây)
+              },
+              function () {
+                layer.closeAll();
+                window.parent.location.reload();
+                var index = parent.layer.getFrameIndex(window.name);
+                parent.layer.close(index);
+              }
+            );
+          } else {
+            layer.closeAll();
+            layer.msg(data.msg);
+            return false;
+          }
+        },
+        error: function (XMLHttpRequest, textStatus, errorThrown) {
+          layer.closeAll();
+          if (textStatus == "timeout") {
+            layer.msg(
+              "Yêu cầu đã hết thời gian chờ！",
+              {
+                icon: 2,
+                time: 1500, //2 giây đóng (nếu không cấu hình, mặc định là 3 giây)
+              },
+              function () {
+                return false;
+              }
+            );
+          } else {
+            layer.msg(
+              "Lỗi máy chủ！",
+              {
+                icon: 2,
+                time: 1500, //2 giây đóng (nếu không cấu hình, mặc định là 3 giây)
+              },
+              function () {
+                return false;
+              }
+            );
+          }
+        },
+      });
+    });
+
+    form.on("select(uid)", function (data) {
+      //选择移交单位 赋值给input框
+      var select_text = data.elem[data.elem.selectedIndex].text;
+      $("#HandoverCompany").val(select_text);
+      $("#uid").next().find("dl").css({ display: "none" });
+      form.render();
+    });
+
+    $("#HandoverCompany").bind("input propertychange", function () {
+      var value = $("#HandoverCompany").val();
+      $("#uid").val(value);
+      form.render();
+      $("#uid").next().find("dl").css({ display: "block" });
+      var dl = $("#uid").next().find("dl").children();
+      var j = -1;
+      for (var i = 0; i < dl.length; i++) {
+        if (dl[i].innerHTML.indexOf(value) <= -1) {
+          dl[i].style.display = "none";
+          j++;
+        }
+        if (j == dl.length - 1) {
+          $("#uid").next().find("dl").css({ display: "none" });
+        }
+      }
+    });
+  });
+
+  $("#HandoverCompany").on("input propertychange", function () {
+    if ($(this).val() !== "") {
+      console.log($(this).val());
+    }
+  });
+</script>

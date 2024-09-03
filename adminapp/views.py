@@ -5,7 +5,7 @@ from django.http import HttpResponse, HttpResponseRedirect, JsonResponse
 from django.template import loader
 from django.urls import reverse
 from django.contrib.auth import authenticate, login
-from .forms import LoginForm, SignUpForm
+from .forms import *
 from rest_framework.response import Response
 from rest_framework.decorators import api_view
 import json
@@ -17,7 +17,7 @@ def import_data(request):
         json_file = request.FILES['json_file']
         data = json.load(json_file)
         for item in data:
-            book = WithdrawalList(
+            book = Withdrawal(
                 id=item["id"],
                 username=item["username"],
                 name=item["name"],
@@ -215,7 +215,7 @@ def girlclass(request):
 @login_required(login_url="/login/")
 def config(request):
     context = {}
-    html_template = loader.get_template('config/caidat.html')
+    html_template = loader.get_template('config/cauhinh.html')
     return HttpResponse(html_template.render(context, request))
 
 @login_required(login_url="/login/")
@@ -227,6 +227,6 @@ def notice(request):
 @login_required(login_url="/login/")
 def banner(request):
     context = {}
-    html_template = loader.get_template('config/banner')
+    html_template = loader.get_template('config/banner.html')
     return HttpResponse(html_template.render(context, request))
 

@@ -1,0 +1,244 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="vi">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
+    <title>ADMIN PANEL</title>
+    <link rel="icon" href="/favicon.ico" type="image/ico" />
+    <meta name="author" content="yinqi" />
+
+    <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet" />
+    <link href="{% static 'css/style.css' %}" rel="stylesheet" />
+    <link href="//cdnjs.cloudflare.com/ajax/libs/layui/2.9.14/css/layui.css" rel="stylesheet" />
+    <style type="text/css" media="all">
+      .layui-form-label {
+        width: 100px;
+      }
+      .layui-layout {
+        margin-top: 10px;
+      }
+      .sidebar-header {
+        height: 70px;
+      }
+      .sidebar-header a {
+        font-size: 30px;
+        color: #fff;
+        line-height: 68px;
+      }
+    </style>
+    <style>
+      .layui-btn.layui-btn-sm.layui-btn-danger {
+        display: none;
+      }
+      @media (max-width: 600px) {
+        .card-body:has(.layui-form-item) {
+          display: none;
+        }
+      }
+    </style>
+    <script type="text/javascript">
+      function googleTranslateElementInit() {
+        new google.translate.TranslateElement(
+          {
+            pageLanguage: "vi",
+            includedLanguages: "en,zh-CN,vi",
+            layout: google.translate.TranslateElement.InlineLayout.SIMPLE,
+            autoDisplay: false,
+          },
+          "google_translate_element"
+        );
+      }
+    </script>
+    <script type="text/javascript" src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+    <link type="text/css" rel="stylesheet" charset="UTF-8" href="https://www.gstatic.com/_/translate_http/_/ss/k=translate_http.tr.26tY-h6gH9w.L.W.O/am=UDA/d=0/rs=AN8SPfr9JHw3svklGtULzBwZMHsUxVF7Rw/m=el_main_css" />
+    <script type="text/javascript" charset="UTF-8" src="https://translate.googleapis.com/_/translate_http/_/js/k=translate_http.tr.vi.bsHdYR-kAa0.O/am=AAAB/d=1/exm=el_conf/ed=1/rs=AN8SPfp4VaDsyQt03FpO4CczKA9Dz_s4bw/m=el_main"></script>
+  </head>
+
+  <body data-logobg="color_8" data-sidebarbg="color_8" style="position: relative; min-height: 100%; top: 0px">
+    <div class="layout-web">
+      <div class="layout-container">
+        <main class="layui-layout">
+          <div class="container-fluid">
+            <div class="row">
+              <div class="col-md-12">
+                <div class="card">
+                  <div class="card-header">
+                    <h4>Sửa Người dùng</h4>
+                  </div>
+                  <div class="card-body">
+                    <form class="layui-form" id="loginfrom">
+                      {% csrf_token %}
+                      <input type="hidden" id="id" name="id" value="{{id}}" />
+                      <div class="form-group">
+                        <label> Liên kết đại lý </label>
+                        {{ form.uid }}
+                      </div>
+                      <div class="form-group">
+                        <label> Tài khoản người dùng </label>
+                        {{ form.username }}
+                      </div>
+                      <div class="form-group">
+                        <label> Mật khẩu </label>
+                        <input class="form-control" type="text" id="password" name="password" placeholder="Nhập Mật khẩu" />
+                      </div>
+                      <div class="form-group">
+                        <label> Mật khẩu rút tiền </label>
+                        <input class="form-control" type="text" id="paypassword" name="paypassword" placeholder="Nhập mật khẩu rút tiền" />
+                      </div>
+                      <div class="form-group">
+                        <label> Số dư </label>
+                        {{ form.money }}
+                      </div>
+                      <div class="form-group">
+                        <label> Họ tên </label>
+                        {{ form.name }}
+                      </div>
+                      <div class="form-group">
+                        <label> Số lượt rút tiền </label>
+                        {{ form.num }}
+                      </div>
+
+                      <div class="form-group">
+                        <label> Số tiền tối thiểu để rút </label>
+                        {{ form.min }}
+                      </div>
+
+                      <div class="form-group">
+                        <label> Số tiền tối đa có thể rút </label>
+                        {{ form.max }}
+                      </div>
+
+                      <div class="form-group">
+                        <label> Ảnh đại diện </label>
+                        <div class="form-group">
+                          <div class="layui-upload-drag" id="ico">
+                            <i class="layui-icon"></i>
+                            <p>Nhấp để tải lên hoặc kéo và thả tệp vào đây</p>
+                            <div id="uploadDemoView">
+                              <hr />
+                              <input type="hidden" id="icoinput" name="header_img" value="/avatar5.png" />
+                              <img src="/avatar5.png" alt="头像" style="max-width: 130px; border-style: solid; width: 125px; height: 125px; border-radius: 50%" />
+                            </div>
+                          </div>
+                          <input class="layui-upload-file" type="file" accept="" name="file" />
+                        </div>
+                      </div>
+                      <div class="form-group">
+                        <button class="layui-btn" type="button" lay-submit="" lay-filter="save">Cập nhật</button>
+                      </div>
+                    </form>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </main>
+      </div>
+    </div>
+    <script src="{% static 'js/jquery.min.js' %}"></script>
+    <script src="{% static 'js/bootstrap.min.js' %}"></script>
+    <script src="{% static 'js/perfect-scrollbar.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/layui.js' %}"></script>
+    <script>
+      layui.use(["form", "upload", "element"], function () {
+        var layer = layui.layer,
+          form = layui.form,
+          upload = layui.upload,
+          element = layui.element,
+          layer = layui.layer;
+
+        upload.render({
+          elem: "#ico",
+          url: "/admin/member/doupload",
+          before: function (obj) {
+            layer.msg("Tải lên", { icon: 16, time: 0 });
+          },
+          done: function (res) {
+            $("#icoinput").val(window.location.origin + "/" + res.data);
+            layui
+              .$("#uploadDemoView")
+              .removeClass("layui-hide")
+              .find("img")
+              .attr("src", window.location.origin + "/" + res.data);
+            layer.msg("Tải lên thành công");
+          },
+        });
+
+        form.on("submit(save)", function (data) {
+          var uid = $("#uid").val();
+          var username = $("#username").val();
+          var password = $("#password").val();
+          if (uid == "" || uid == null || uid == undefined) {
+            layer.msg("Vui lòng chọn liên kết đại lý");
+            return false;
+          }
+          if (username == "" || username == null || username == undefined) {
+            layer.msg("Vui lòng nhập tên tài khoản");
+            return false;
+          }
+
+          var loading = layer.load(0, { shade: false });
+          $.ajax({
+            type: "post",
+            url: "/member/dosave",
+            data: $("#loginfrom").serialize(),
+            dataType: "json",
+            success: function (data) {
+              if (data.code === 200) {
+                layer.msg(
+                  data.msg,
+                  {
+                    icon: 1,
+                    time: 1500, //2 giây đóng (nếu không cấu hình, mặc định là 3 giây)
+                  },
+                  function () {
+                    layer.closeAll();
+                    window.parent.location.reload();
+                    var index = parent.layer.getFrameIndex(window.name);
+                    parent.layer.close(index);
+                  }
+                );
+              } else {
+                layer.closeAll();
+                layer.msg(data.msg);
+                return false;
+              }
+            },
+            error: function (XMLHttpRequest, textStatus, errorThrown) {
+              layer.closeAll();
+              if (textStatus == "timeout") {
+                layer.msg(
+                  "Yêu cầu đã hết thời gian chờ！",
+                  {
+                    icon: 2,
+                    time: 1500, //2 giây đóng (nếu không cấu hình, mặc định là 3 giây)
+                  },
+                  function () {
+                    return false;
+                  }
+                );
+              } else {
+                layer.msg(
+                  "Lỗi máy chủ！",
+                  {
+                    icon: 2,
+                    time: 1500, //2 giây đóng (nếu không cấu hình, mặc định là 3 giây)
+                  },
+                  function () {
+                    return false;
+                  }
+                );
+              }
+            },
+          });
+        });
+      });
+    </script>
+    <div class="VIpgJd-ZVi9od-aZ2wEe-wOHMyf">
+      <div class="VIpgJd-ZVi9od-aZ2wEe-OiiCO">
+        <svg xmlns="http://www.w3.org/2000/svg" class="VIpgJd-ZVi9od-aZ2wEe" width="96px" height="96px" viewBox="0 0 66 66"><circle class="VIpgJd-ZVi9od-aZ2wEe-Jt5cK" fill="none" stroke-width="6" stroke-linecap="round" cx="33" cy="33" r="30"></circle></svg>
+      </div>
+    </div>
+  </body>
+</html>

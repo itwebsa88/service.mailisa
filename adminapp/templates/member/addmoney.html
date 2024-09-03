@@ -53,7 +53,7 @@
                   <div class="card-body">
                     <form class="layui-form" id="loginfrom">
                       {% csrf_token %}
-                      <input type="hidden" id="id" name="id" value="1070" />
+                      <input type="hidden" id="id" name="id" value="{{id}}" />
                       <div class="form-group">
                         <label> Số tiền </label>
                         {{ form.money }}

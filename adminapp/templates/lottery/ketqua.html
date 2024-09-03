@@ -112,10 +112,10 @@
                         <div class="layui-input-inline">
                           <select name="key">
                             <option value="">Vui lòng chọn</option>
-                            <option value="game1">Xác thực 1</option>
-                            <option value="5">Xác thực 2</option>
-                            <option value="game2">Xác thực 3</option>
-                            <option value="game3">Xác thực 4</option>
+                            <option value="1">Xác thực 1</option>
+                            <option value="2">Xác thực 2</option>
+                            <option value="3">Xác thực 3</option>
+                            <option value="4">Xác thực 4</option>
                           </select>
                           <div class="layui-unselect layui-form-select">
                             <div class="layui-select-title">
@@ -124,10 +124,10 @@
                             </div>
                             <dl class="layui-anim layui-anim-upbit">
                               <dd lay-value="" class="layui-select-tips">Vui lòng chọn</dd>
-                              <dd lay-value="game1" class="">Xác thực 1</dd>
-                              <dd lay-value="5" class="">Xác thực 2</dd>
-                              <dd lay-value="game2" class="">Xác thực 3</dd>
-                              <dd lay-value="game3" class="">Xác thực 4</dd>
+                              <dd lay-value="1" class="">Xác thực 1</dd>
+                              <dd lay-value="2" class="">Xác thực 2</dd>
+                              <dd lay-value="3" class="">Xác thực 3</dd>
+                              <dd lay-value="4" class="">Xác thực 4</dd>
                             </dl>
                           </div>
                         </div>
@@ -301,10 +301,10 @@
                   var result1 = (results2 = "");
                   var numbers = d.opencode.split(",");
                   var seasons = {
-                    1: "Xinh Đẹp",
-                    2: "Đáng Yêu",
-                    3: "Quyến Rủ",
-                    4: "Gợi Cảm",
+                    1: "Combo 1",
+                    2: "Combo 2",
+                    3: "Combo 3",
+                    4: "Combo 4",
                   };
                   if (numbers.length > 0) {
                     var firstNumber = numbers[0];
@@ -318,7 +318,7 @@
                       result2 = seasons[secondNumber];
                     }
                   }
-                  return " < b > " + result1 + ", " + result2 + " < /b>";
+                  return " <b> " + result1 + ", " + result2 + " </b>";
                 },
               },
               { field: "rule", title: "Trò chơi", width: 120 },
